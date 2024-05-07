@@ -5,6 +5,8 @@ import axios from "axios";
 import {PetCard} from "./components/PetCard.tsx";
 import catLogo from "./assets/cat.blue.svg"
 import dogLogo from "./assets/dog.blue.svg"
+import filterLogo from "./assets/filter.jpg"
+import searchLogo from "./assets/search-icon.webp"
 
 export default App
 
@@ -38,7 +40,7 @@ function App() {
         </header>
         <main>
             <div className={"input_container"}>
-                <form>
+                <form className={"input_form"}>
                     <select name={"Suche"}>
                         <option>Familienmitglied</option>
                         <option>Befristete Pflege</option>
@@ -51,6 +53,7 @@ function App() {
                         <option>20km</option>
                         <option>50km</option>
                     </select>
+                    <button><img id={"search_logo"} src={searchLogo}/></button>
                 </form>
             </div>
             <div className={"filter_container"}>
@@ -59,7 +62,7 @@ function App() {
                     <button><img id="dog_logo" src={dogLogo}/></button>
                 </div>
                 <div>
-                    <button>Filter</button>
+                    <button><img id="filter_logo" src={filterLogo}/></button>
                 </div>
             </div>
             <div className={"petCard_container"}>
