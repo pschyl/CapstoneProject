@@ -8,6 +8,7 @@ import dogLogo from "./assets/dog.blue.svg"
 import filterLogo from "./assets/filter.jpg"
 import searchLogo from "./assets/search-icon.webp"
 import websiteLogo from "./assets/logo_mw_small.jpg"
+import {LogoLogin} from "./components/LogoLogin.tsx";
 
 export default App
 
@@ -31,13 +32,7 @@ function App() {
   return (
     <>
         <header>
-            <div className={"logo_login_container"}>
-                <div className={"logo_container"}>
-                    <img id="website_logo" src={websiteLogo}/>
-                    <p id={"headline"}>miwau</p>
-                </div>
-                <div>Login</div>
-            </div>
+            <LogoLogin />
             <div>
                 Navbar
             </div>

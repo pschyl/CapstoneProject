@@ -1,0 +1,20 @@
+.logo_login_container {
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.logo_container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+#website_logo {
+    width: 50px;
+}
+
+#headline {
+    color: white;
+}

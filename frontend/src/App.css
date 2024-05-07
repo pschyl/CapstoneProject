@@ -15,19 +15,6 @@ footer {
     background-color: black;
 }
 
-.logo_login_container {
-    margin-left: 5%;
-    margin-right: 5%;
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.logo_container {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-}
-
 .petCard_container {
     display: flex;
     align-items: center;
