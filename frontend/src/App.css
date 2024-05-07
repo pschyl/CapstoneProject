@@ -122,6 +122,10 @@ footer {
     cursor: pointer;
 }
 
+.input_form button:hover {
+    background-color: darkorange;
+}
+
 #website_logo {
     width: 50px;
 }
