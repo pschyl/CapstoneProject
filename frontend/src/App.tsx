@@ -8,6 +8,7 @@ import dogLogo from "./assets/dog.blue.svg"
 import filterLogo from "./assets/filter.jpg"
 import searchLogo from "./assets/search-icon.webp"
 import {LogoLogin} from "./components/LogoLogin.tsx";
+import {NavBar} from "./components/NavBar.tsx";
 
 export default App
 
@@ -32,9 +33,7 @@ function App() {
     <>
         <header>
             <LogoLogin />
-            <div>
-                Navbar
-            </div>
+            <NavBar />
         </header>
         <main>
             <div className={"input_container"}>
