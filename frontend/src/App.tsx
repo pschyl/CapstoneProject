@@ -7,7 +7,6 @@ import catLogo from "./assets/cat.blue.svg"
 import dogLogo from "./assets/dog.blue.svg"
 import filterLogo from "./assets/filter.jpg"
 import searchLogo from "./assets/search-icon.webp"
-import websiteLogo from "./assets/logo_mw_small.jpg"
 import {LogoLogin} from "./components/LogoLogin.tsx";
 
 export default App
