@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {Pet} from "./model/Pet.ts";
 import axios from "axios";
 import {PetCard} from "./components/PetCard.tsx";
+import catLogo from "./assets/cat.blue.svg"
+import dogLogo from "./assets/dog.blue.svg"
 
 export default App
 
@@ -52,7 +54,10 @@ function App() {
                 </form>
             </div>
             <div className={"filter_container"}>
-                <div>Checkboxes</div>
+                <div className={"species_filter_container"}>
+                    <button><img id="cat_logo" src={catLogo}/></button>
+                    <button><img id="dog_logo" src={dogLogo}/></button>
+                </div>
                 <div>
                     <button>Filter</button>
                 </div>

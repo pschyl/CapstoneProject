@@ -39,3 +39,31 @@ footer {
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
+.species_filter_container {
+    display: flex;
+    flex-flow: row;
+}
+
+.species_filter_container button {
+    border: none;
+    background-color: white;
+}
+
+#dog_logo {
+    width: 40px;
+}
+
+#cat_logo {
+    width: 40px;
+}
+
+#dog_logo:hover {
+    scale: 105%;
+    cursor: pointer;
+}
+
+#cat_logo:hover {
+    scale: 105%;
+    cursor: pointer;
+}
