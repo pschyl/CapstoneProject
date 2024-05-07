@@ -35,9 +35,9 @@ footer {
     height: 40px;
     width: fit-content;
     padding: 5px 20px 5px 10px;
-    border: 1px solid lightgrey;
+    border: 1px solid #748E8F;
     border-radius: 20px;
-    box-shadow: 1px 1px lightgrey;
+    box-shadow: 1px 1px #748E8F;
 }
 
 .input_form select {
@@ -110,7 +110,7 @@ footer {
 }
 
 .input_form button:hover {
-    background-color: darkorange;
+    background-color: orange;
 }
 
 #website_logo {
