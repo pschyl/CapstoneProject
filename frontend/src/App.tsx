@@ -35,9 +35,14 @@ function App() {
             </div>
         </header>
         <main>
-            <div className={"inputBar_container"}>
-                <form className={"inputBar"}>
-                    <input className={"inputBar_element"} type={"text"}/>
+            <div className={"input_container"}>
+                <form>
+                    <select name={"Suche"}>
+                        <option>Familienmitglied</option>
+                        <option>Befristete Pflege</option>
+                        <option>Spazierbegleitung</option>
+                    </select>
+                    <input placeholder={"Wohnort"} className={"inputBar_element"} type={"text"}/>
                     <select>
                         <option>5km</option>
                         <option>10km</option>
@@ -46,9 +51,15 @@ function App() {
                     </select>
                 </form>
             </div>
+            <div className={"filter_container"}>
+                <div>Checkboxes</div>
+                <div>
+                    <button>Filter</button>
+                </div>
+            </div>
             <div className={"petCard_container"}>
                 {petList.map((pet: Pet) => (
-                    <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} />
+                    <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images}/>
                 ))}
             </div>
         </main>
