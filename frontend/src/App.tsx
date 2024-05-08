@@ -15,6 +15,7 @@ export default App
 function App() {
 
     const [petList, setPetList] = useState<Pet[]>([])
+    const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
 
     function fetchPets() {
         axios.get("/api/pets")
@@ -22,6 +23,14 @@ function App() {
                 setPetList(response.data)
             })
             .catch((error) => console.log(error.message))
+    }
+
+    function handleCheckboxChange(checkboxNumber:number) {
+        if (isChecked[checkboxNumber]) {
+            setIsChecked({...isChecked, [checkboxNumber] : false})
+        } else {
+            setIsChecked({...isChecked, [checkboxNumber] : true})
+        }
     }
 
     useEffect(() => {
@@ -58,10 +67,20 @@ function App() {
             </div>
             <div className={"filter_container"}>
                 <div className={"species_filter_container"}>
-                    <input type={"checkbox"} id={"species_filter_cat"}/>
+                    <input
+                        type={"checkbox"}
+                        id={"species_filter_cat"}
+                        checked={isChecked[0]}
+                        onChange={() => handleCheckboxChange(0)}
+                    />
                     <label htmlFor={"species_filter_cat"}><img id="cat_logo" src={catLogo}/></label>
 
-                    <input type={"checkbox"} id={"species_filter_dog"}/>
+                    <input
+                        type={"checkbox"}
+                        id={"species_filter_dog"}
+                        checked={isChecked[1]}
+                        onChange={() => handleCheckboxChange(1)}
+                    />
                     <label htmlFor={"species_filter_dog"}><img id="dog_logo" src={dogLogo}/></label>
                 </div>
                 <div>
@@ -70,7 +89,7 @@ function App() {
             </div>
             <div className={"petCard_container"}>
                 {petList.map((pet: Pet) => (
-                    <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images}/>
+                    <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} key={pet.id}/>
                 ))}
             </div>
         </main>
