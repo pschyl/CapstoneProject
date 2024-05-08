@@ -72,6 +72,23 @@ footer {
 .species_filter_container {
     display: flex;
     flex-flow: row;
+    gap: 15px;
+}
+
+#species_filter_cat {
+    display: none;
+}
+
+#species_filter_cat:checked + label > img {
+    scale: 80%;
+}
+
+#species_filter_dog {
+    display: none;
+}
+
+#species_filter_dog:checked + label > img {
+    scale: 80%;
 }
 
 .filter_container button {
@@ -80,11 +97,11 @@ footer {
 }
 
 #dog_logo {
-    width: 40px;
+    width: 55px;
 }
 
 #cat_logo {
-    width: 40px;
+    width: 55px;
 }
 
 #filter_logo {
@@ -96,12 +113,12 @@ footer {
 }
 
 #dog_logo:hover {
-    scale: 105%;
+    scale: 95%;
     cursor: pointer;
 }
 
 #cat_logo:hover {
-    scale: 105%;
+    scale: 95%;
     cursor: pointer;
 }
 
@@ -120,5 +137,6 @@ footer {
 #headline {
     color: white;
 }
+
 
 

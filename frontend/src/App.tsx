@@ -43,20 +43,26 @@ function App() {
                         <option>Befristete Pflege</option>
                         <option>Spazierbegleitung</option>
                     </select>
+
                     <input placeholder={"Wohnort"} className={"inputBar_element"} type={"text"}/>
+
                     <select>
                         <option>5km</option>
                         <option>10km</option>
                         <option>20km</option>
                         <option>50km</option>
                     </select>
+
                     <button><img id={"search_logo"} src={searchLogo}/></button>
                 </form>
             </div>
             <div className={"filter_container"}>
                 <div className={"species_filter_container"}>
-                    <button><img id="cat_logo" src={catLogo}/></button>
-                    <button><img id="dog_logo" src={dogLogo}/></button>
+                    <input type={"checkbox"} id={"species_filter_cat"}/>
+                    <label htmlFor={"species_filter_cat"}><img id="cat_logo" src={catLogo}/></label>
+
+                    <input type={"checkbox"} id={"species_filter_dog"}/>
+                    <label htmlFor={"species_filter_dog"}><img id="dog_logo" src={dogLogo}/></label>
                 </div>
                 <div>
                     <button><img id="filter_logo" src={filterLogo}/></button>
