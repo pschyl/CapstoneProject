@@ -1,13 +1,12 @@
 package com.github.pschyl.backend.controller;
 
+import com.github.pschyl.backend.dto.ShelterWOIdAndCoordinates;
 import com.github.pschyl.backend.model.Pet;
 import com.github.pschyl.backend.model.Shelter;
 import com.github.pschyl.backend.service.PetService;
 import com.github.pschyl.backend.service.ShelterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +20,10 @@ public class ShelterController {
     @GetMapping
     public List<Shelter> getAllShelter() {
         return service.getAllShelter();
+    }
+
+    @PostMapping
+    public Shelter saveNewShelter(@RequestBody ShelterWOIdAndCoordinates newShelter) {
+        return service.saveNewShelter(newShelter);
     }
 }

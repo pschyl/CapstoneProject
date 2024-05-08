@@ -1,5 +1,6 @@
 package com.github.pschyl.backend.service;
 
+import com.github.pschyl.backend.dto.ShelterWOIdAndCoordinates;
 import com.github.pschyl.backend.model.Pet;
 import com.github.pschyl.backend.model.Shelter;
 import com.github.pschyl.backend.repository.PetRepo;
@@ -14,8 +15,23 @@ import java.util.List;
 public class ShelterService {
 
     private final ShelterRepo repo;
+    private final IdService idService;
+    private final CoordinateService coordinateService;
 
     public List<Shelter> getAllShelter() {
         return repo.findAll();
+    }
+
+    public Shelter saveNewShelter(ShelterWOIdAndCoordinates newShelter) {
+
+        Shelter shelter = new Shelter(
+                idService.generateId(),
+                newShelter.getName(),
+                newShelter.getPostalCode(),
+                coordinateService.transformPostalCodeToCoordinates(newShelter.getPostalCode())
+        );
+        repo.save(shelter);
+        return shelter;
+
     }
 }
