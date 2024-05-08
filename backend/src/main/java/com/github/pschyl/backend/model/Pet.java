@@ -11,5 +11,6 @@ public class Pet {
     private final String id;
     private final String name;
     private final String species;
+    private final Shelter shelter;
     private final List<String> images;
 }
