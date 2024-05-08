@@ -90,7 +90,7 @@ function App() {
             {!isChecked[0] && !isChecked[1] &&
             <div className={"petCard_container"}>
                 {petList.map((pet: Pet) => (
-                    <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} key={pet.id}/>
+                    <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter} key={pet.id}/>
                 ))}
             </div>
             }
@@ -99,7 +99,7 @@ function App() {
                 <div className={"petCard_container"}>
                     {petList.filter((pet: Pet) => (pet.species === "dog"))
                         .map((pet: Pet) => (
-                        <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} key={pet.id}/>
+                        <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter} key={pet.id}/>
                     ))}
                 </div>
             }
@@ -108,7 +108,7 @@ function App() {
                 <div className={"petCard_container"}>
                     {petList.filter((pet: Pet) => (pet.species === "cat"))
                         .map((pet: Pet) => (
-                            <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} key={pet.id}/>
+                            <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter} key={pet.id}/>
                         ))}
                 </div>
             }

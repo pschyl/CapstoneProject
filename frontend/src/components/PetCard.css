@@ -22,6 +22,18 @@
 }
 
 .image_container img:hover {
-    scale: 110%;
+    scale: 105%;
     cursor: pointer;
+}
+
+.cardInformation {
+    margin-top: 0;
+}
+
+#name {
+    font-weight: bold;
+}
+
+#shelter_name {
+    font-weight: lighter;
 }
