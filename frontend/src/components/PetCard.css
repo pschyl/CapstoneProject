@@ -1,0 +1,27 @@
+.petCard {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 300px;
+    height: 400px;
+    gap: 30px;
+}
+
+.image_container {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.image_container img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.image_container img:hover {
+    scale: 110%;
+    cursor: pointer;
+}

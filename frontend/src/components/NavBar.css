@@ -1,0 +1,21 @@
+nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 30px;
+    background-color: white;
+}
+
+.navBar_element {
+    border: 1px solid white;
+    border-radius: 15px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-family: Arial;
+    color: black;
+    padding: 20px;
+}
+
+.navBar_element:hover {
+    background-color: whitesmoke;
+}
