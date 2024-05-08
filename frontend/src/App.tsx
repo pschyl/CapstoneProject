@@ -87,11 +87,31 @@ function App() {
                     <button><img id="filter_logo" src={filterLogo}/></button>
                 </div>
             </div>
+            {!isChecked[0] && !isChecked[1] &&
             <div className={"petCard_container"}>
                 {petList.map((pet: Pet) => (
                     <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} key={pet.id}/>
                 ))}
             </div>
+            }
+
+            {isChecked[0] && !isChecked[1] &&
+                <div className={"petCard_container"}>
+                    {petList.filter((pet: Pet) => (pet.species === "dog"))
+                        .map((pet: Pet) => (
+                        <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} key={pet.id}/>
+                    ))}
+                </div>
+            }
+
+            {isChecked[1] && !isChecked[0] &&
+                <div className={"petCard_container"}>
+                    {petList.filter((pet: Pet) => (pet.species === "cat"))
+                        .map((pet: Pet) => (
+                            <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} key={pet.id}/>
+                        ))}
+                </div>
+            }
         </main>
         <footer>
             Footer
