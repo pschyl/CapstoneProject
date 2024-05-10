@@ -35,10 +35,8 @@ public class PetService {
 
     public List<Pet> getAllWithinRadius(String location, int radius) {
         Coordinates coordinatesOfLocation = coordinateService.transformLocationToCoordinates(location);
-        List<Pet> response = repo.findAll().stream()
+        return repo.findAll().stream()
                 .filter(pet -> pet.getShelter().getCoordinates().isWithinRadius(coordinatesOfLocation, radius))
                 .toList();
-        System.out.println(response);
-        return response;
     }
 }

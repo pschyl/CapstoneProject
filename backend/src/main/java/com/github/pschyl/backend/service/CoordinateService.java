@@ -8,6 +8,8 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class CoordinateService {
 
@@ -23,9 +25,11 @@ public class CoordinateService {
 
         JOpenCageResponse response = jOpenCageGeocoder.forward(request);
 
+        try {
+            return new Coordinates(response.getResults().getFirst().getGeometry().getLat(), response.getResults().getFirst().getGeometry().getLng());
+        } catch (NoSuchElementException e) {
+            return new Coordinates(0, 0);
+        }
 
-        return new Coordinates(response.getResults().getFirst().getGeometry().getLat(), response.getResults().getFirst().getGeometry().getLng());
     }
-
-
 }

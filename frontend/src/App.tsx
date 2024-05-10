@@ -125,10 +125,12 @@ function App() {
             </div>
 
             <div className={"petCard_container"}>
-                {petList.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
+                {petList.length ? petList.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
                     .map((pet: Pet) => (
                         <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter} key={pet.id}/>
-                    ))}
+                    ))
+                : <div id={"no_result"}><div>keine Einträge gefunden</div></div>}
+
             </div>
 
         </main>
