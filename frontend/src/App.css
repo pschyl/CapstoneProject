@@ -26,6 +26,9 @@ footer {
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .input_form {
@@ -60,6 +63,30 @@ footer {
     border-radius: 100%;
     cursor: pointer;
     padding: 8px;
+}
+
+#active_search {
+    border: 1px solid white;
+    padding: 10px;
+    font-family: Arial;
+    font-style: italic;
+    font-size: x-small;
+    color: #748E8F;
+    border-radius: 30px;
+}
+
+#active_search:hover {
+    background-color: whitesmoke;
+}
+
+#active_search button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#active_search button:hover {
+    scale: 110%;
 }
 
 .filter_container {

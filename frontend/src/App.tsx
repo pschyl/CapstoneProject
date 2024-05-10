@@ -19,7 +19,9 @@ function App() {
     const [petList, setPetList] = useState<Pet[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
     const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog"]})
-    const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "Familienmitglied", location: "", radius: 5})
+    const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "Familienmitglied", location: "", radius: 20})
+    const [searchStatus, setSearchStatus] = useState<boolean>(false)
+    const [lastSearchValue, setLastSearchValue] = useState<SearchObject>({searchType: "", location: "", radius: 0})
 
     function fetchPets() {
         axios.get("/api/pets")
@@ -52,7 +54,14 @@ function App() {
         axios.get(("/api/pets/" + searchInput.location + "/" + searchInput.radius))
             .then((response) => {setPetList(response.data)})
             .catch((error) => console.log(error.message))
-        console.log(petList)
+        setSearchStatus(true)
+        setLastSearchValue(searchInput)
+    }
+
+    function resetSearch() {
+        setSearchStatus(false)
+        setSearchInput({searchType: "Familienmitglied", location: "", radius: 20})
+        fetchPets()
     }
 
     useEffect(() => {
@@ -87,7 +96,11 @@ function App() {
 
                     <button type={"submit"}><img id={"search_logo"} src={searchLogo}/></button>
                 </form>
+                {searchStatus &&
+                    <div id={"active_search"}>{lastSearchValue.searchType}, {lastSearchValue.location}, {lastSearchValue.radius}km <button onClick={resetSearch}>❌</button></div>
+                }
             </div>
+
             <div className={"filter_container"}>
                 <div className={"species_filter_container"}>
                     <input
