@@ -1,5 +1,5 @@
 import './App.css'
-import {useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {Pet} from "./model/Pet.ts";
 import axios from "axios";
 import {PetCard} from "./components/PetCard.tsx";
@@ -10,6 +10,7 @@ import searchLogo from "./assets/search-icon.webp"
 import {LogoLogin} from "./components/LogoLogin.tsx";
 import {NavBar} from "./components/NavBar.tsx";
 import {FilterObject} from "./model/FilterObject.ts";
+import {SearchObject} from "./model/SearchObject.ts";
 
 export default App
 
@@ -18,6 +19,7 @@ function App() {
     const [petList, setPetList] = useState<Pet[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
     const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog"]})
+    const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "", location: "", radius: 100})
 
     function fetchPets() {
         axios.get("/api/pets")
@@ -37,6 +39,22 @@ function App() {
         }
     }
 
+    function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+        setSearchInput({...searchInput, location: event.target.value})
+    }
+
+    function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
+        setSearchInput({...searchInput, [event.target.name]: event.target.value})
+    }
+
+    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        console.log(searchInput)
+        axios.get(("/api/pets/" + searchInput.location + "/" + searchInput.radius))
+            .then((response) => {setPetList(response.data)})
+            .catch((error) => console.log(error.message))
+    }
+
     useEffect(() => {
         fetchPets()
     }, [petList])
@@ -50,23 +68,24 @@ function App() {
         </header>
         <main>
             <div className={"input_container"}>
-                <form className={"input_form"}>
-                    <select name={"Suche"}>
+                <form onSubmit={handleSubmit} className={"input_form"}>
+                    <select onChange={handleSelectChange} name={"searchType"} value={searchInput.searchType}>
                         <option>Familienmitglied</option>
                         <option>Befristete Pflege</option>
                         <option>Spazierbegleitung</option>
                     </select>
 
-                    <input placeholder={"Wohnort"} className={"inputBar_element"} type={"text"}/>
+                    <input onChange={handleInputChange} placeholder={"Wohnort"} className={"inputBar_element"} type={"text"} value={searchInput.location}/>
 
-                    <select>
-                        <option>5km</option>
-                        <option>10km</option>
-                        <option>20km</option>
-                        <option>50km</option>
+                    <select onChange={handleSelectChange} name={"radius"} value={searchInput.radius}>
+                        <option value={5}>5km</option>
+                        <option value={10}>10km</option>
+                        <option value={20}>20km</option>
+                        <option value={50}>50km</option>
+                        <option value={100}>100km</option>
                     </select>
 
-                    <button><img id={"search_logo"} src={searchLogo}/></button>
+                    <button type={"submit"}><img id={"search_logo"} src={searchLogo}/></button>
                 </form>
             </div>
             <div className={"filter_container"}>
