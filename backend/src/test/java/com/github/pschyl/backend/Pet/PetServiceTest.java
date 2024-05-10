@@ -74,7 +74,7 @@ public class PetServiceTest {
     }
 
     @Test
-    void saveNewPet_shouldReturn_WhenCalled() {
+    void saveNewPet_shouldReturnPetDjango_WhenCalledWithTestPet() {
         //GIVEN
         Pet expected = new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture"));
         when(idService.generateId()).thenReturn("1");
