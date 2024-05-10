@@ -9,6 +9,7 @@ import filterLogo from "./assets/filter.jpg"
 import searchLogo from "./assets/search-icon.webp"
 import {LogoLogin} from "./components/LogoLogin.tsx";
 import {NavBar} from "./components/NavBar.tsx";
+import {FilterObject} from "./model/FilterObject.ts";
 
 export default App
 
@@ -16,6 +17,8 @@ function App() {
 
     const [petList, setPetList] = useState<Pet[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
+    const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog"]})
+    const speciesArray: string[] = ["cat", "dog"]
 
     function fetchPets() {
         axios.get("/api/pets")
@@ -28,8 +31,10 @@ function App() {
     function handleCheckboxChange(checkboxNumber:number) {
         if (isChecked[checkboxNumber]) {
             setIsChecked({...isChecked, [checkboxNumber] : false})
+            filterRole.species.splice(checkboxNumber, 0, speciesArray[checkboxNumber])
         } else {
             setIsChecked({...isChecked, [checkboxNumber] : true})
+            filterRole.species.splice(checkboxNumber, 1)
         }
     }
 
@@ -87,31 +92,14 @@ function App() {
                     <button><img id="filter_logo" src={filterLogo}/></button>
                 </div>
             </div>
-            {!isChecked[0] && !isChecked[1] &&
-            <div className={"petCard_container"}>
-                {petList.map((pet: Pet) => (
-                    <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter} key={pet.id}/>
-                ))}
-            </div>
-            }
 
-            {isChecked[0] && !isChecked[1] &&
-                <div className={"petCard_container"}>
-                    {petList.filter((pet: Pet) => (pet.species === "dog"))
-                        .map((pet: Pet) => (
+            <div className={"petCard_container"}>
+                {petList.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
+                    .map((pet: Pet) => (
                         <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter} key={pet.id}/>
                     ))}
-                </div>
-            }
+            </div>
 
-            {isChecked[1] && !isChecked[0] &&
-                <div className={"petCard_container"}>
-                    {petList.filter((pet: Pet) => (pet.species === "cat"))
-                        .map((pet: Pet) => (
-                            <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter} key={pet.id}/>
-                        ))}
-                </div>
-            }
         </main>
         <footer>
             Footer
