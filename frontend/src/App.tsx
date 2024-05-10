@@ -18,7 +18,6 @@ function App() {
     const [petList, setPetList] = useState<Pet[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
     const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog"]})
-    const speciesArray: string[] = ["cat", "dog"]
 
     function fetchPets() {
         axios.get("/api/pets")
@@ -28,13 +27,13 @@ function App() {
             .catch((error) => console.log(error.message))
     }
 
-    function handleCheckboxChange(checkboxNumber:number) {
+    function handleCheckboxChange(checkboxNumber:number, checkboxSpecies:string) {
         if (isChecked[checkboxNumber]) {
             setIsChecked({...isChecked, [checkboxNumber] : false})
-            filterRole.species.splice(checkboxNumber, 0, speciesArray[checkboxNumber])
+            filterRole.species.push(checkboxSpecies)
         } else {
             setIsChecked({...isChecked, [checkboxNumber] : true})
-            filterRole.species.splice(checkboxNumber, 1)
+            filterRole.species.splice(filterRole.species.indexOf(checkboxSpecies), 1)
         }
     }
 
@@ -76,7 +75,7 @@ function App() {
                         type={"checkbox"}
                         id={"species_filter_cat"}
                         checked={isChecked[0]}
-                        onChange={() => handleCheckboxChange(0)}
+                        onChange={() => handleCheckboxChange(0, "cat")}
                     />
                     <label htmlFor={"species_filter_cat"}><img id="cat_logo" src={catLogo}/></label>
 
@@ -84,7 +83,7 @@ function App() {
                         type={"checkbox"}
                         id={"species_filter_dog"}
                         checked={isChecked[1]}
-                        onChange={() => handleCheckboxChange(1)}
+                        onChange={() => handleCheckboxChange(1, "dog")}
                     />
                     <label htmlFor={"species_filter_dog"}><img id="dog_logo" src={dogLogo}/></label>
                 </div>
