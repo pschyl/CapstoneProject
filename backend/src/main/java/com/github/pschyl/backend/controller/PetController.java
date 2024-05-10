@@ -20,6 +20,11 @@ public class PetController {
         return service.getAllPets();
     }
 
+    @GetMapping("/{location}/{radius}")
+    public List<Pet> getAllWithinRadius(@PathVariable String location, @PathVariable int radius) {
+        return service.getAllWithinRadius(location, radius);
+    }
+
     @PostMapping
     public Pet saveNewPet(@RequestBody PetWOId newPet) {
         return service.saveNewPet(newPet);

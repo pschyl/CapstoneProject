@@ -28,7 +28,7 @@ public class ShelterService {
                 idService.generateId(),
                 newShelter.getName(),
                 newShelter.getPostalCode(),
-                coordinateService.transformPostalCodeToCoordinates(newShelter.getPostalCode())
+                coordinateService.transformLocationToCoordinates(newShelter.getPostalCode())
         );
         repo.save(shelter);
         return shelter;

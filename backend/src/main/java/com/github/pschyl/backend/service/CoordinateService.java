@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CoordinateService {
 
-    public Coordinates transformPostalCodeToCoordinates(String postalCode) {
+    public Coordinates transformLocationToCoordinates(String location) {
 
         JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("ed450abe46f64eab9a8f9fa0ac180b2d");
 
-        JOpenCageForwardRequest request = new JOpenCageForwardRequest(postalCode);
+        JOpenCageForwardRequest request = new JOpenCageForwardRequest(location);
 
         request.setMinConfidence(1);
         request.setNoAnnotations(false);

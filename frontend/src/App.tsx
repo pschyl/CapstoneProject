@@ -19,7 +19,7 @@ function App() {
     const [petList, setPetList] = useState<Pet[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
     const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog"]})
-    const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "", location: "", radius: 100})
+    const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "Familienmitglied", location: "", radius: 5})
 
     function fetchPets() {
         axios.get("/api/pets")
@@ -49,15 +49,15 @@ function App() {
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        console.log(searchInput)
         axios.get(("/api/pets/" + searchInput.location + "/" + searchInput.radius))
             .then((response) => {setPetList(response.data)})
             .catch((error) => console.log(error.message))
+        console.log(petList)
     }
 
     useEffect(() => {
         fetchPets()
-    }, [petList])
+    }, [])
 
 
   return (

@@ -4,6 +4,7 @@ import com.github.pschyl.backend.model.Coordinates;
 import com.github.pschyl.backend.model.Pet;
 import com.github.pschyl.backend.model.Shelter;
 import com.github.pschyl.backend.repository.PetRepo;
+import com.github.pschyl.backend.service.CoordinateService;
 import com.github.pschyl.backend.service.IdService;
 import com.github.pschyl.backend.service.PetService;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,9 @@ public class PetServiceTest {
 
     PetRepo mockrepo = mock(PetRepo.class);
     IdService idService = new IdService();
-    PetService petService = new PetService(mockrepo, idService);
+
+    CoordinateService coordinateService = new CoordinateService();
+    PetService petService = new PetService(mockrepo, idService, coordinateService);
 
     Shelter shelter = new Shelter("1", "Tierheim Bonn", "50678", new Coordinates(1,1));
 
