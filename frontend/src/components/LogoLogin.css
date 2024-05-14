@@ -40,7 +40,7 @@
 }
 
 #login_logo {
-    height: fit-content;
+    height: auto;
     width: 30px;
     padding: 0.5px;
 }
