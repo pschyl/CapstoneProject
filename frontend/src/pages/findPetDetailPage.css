@@ -6,6 +6,7 @@
 .contact_container {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-evenly;
 }
 
 .detail_image_container {

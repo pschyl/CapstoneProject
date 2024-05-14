@@ -36,7 +36,10 @@ export default function FindPetDetailPage() {
                     <li>{selectedPet?.shelter.postalCode}</li>
                 </ul>
             </div>
-            <button>Nachricht an Tierheim senden</button>
+            <div>
+                <p>Anfrage senden <button>✉️</button></p>
+            </div>
+
         </div>
     </>
 }
