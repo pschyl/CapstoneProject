@@ -37,4 +37,5 @@ label {
     margin-top: 25px;
     height: 25px;
     border-radius: 10px;
+    cursor: pointer;
 }
