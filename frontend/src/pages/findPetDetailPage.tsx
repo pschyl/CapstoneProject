@@ -20,7 +20,7 @@ export default function FindPetDetailPage() {
     return <>
         <div className={"detail_container"}>
             <div className={"detail_image_container"}>
-                <img src={selectedPet?.images}/>
+                <img src={selectedPet?.images[0]}/>
             </div>
             <div className={"info_container"}>
                 <ul>
