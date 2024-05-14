@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -89,5 +90,17 @@ public class PetServiceTest {
         //THEN
         assertEquals(expected, actual);
         verify(mockrepo).save(new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture")));
+    }
+
+    @Test
+    void getPetById_ShouldReturnPetDjango_WhenCalledWith1() {
+        //GIVEN
+        Pet expected = new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture"));
+        when(mockrepo.findById("1")).thenReturn(Optional.of(expected));
+        //WHEN
+        Pet actual = petService.getPetById("1");
+        //THEN
+        verify(mockrepo).findById("1");
+        assertEquals(expected, actual);
     }
 }

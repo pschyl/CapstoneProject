@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +39,9 @@ public class PetService {
         return repo.findAll().stream()
                 .filter(pet -> pet.getShelter().getCoordinates().isWithinRadius(coordinatesOfLocation, radius))
                 .toList();
+    }
+
+    public Pet getPetById(String id) {
+        return repo.findById(id).orElseThrow();
     }
 }

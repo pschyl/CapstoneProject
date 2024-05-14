@@ -1,0 +1,29 @@
+.detail_container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.contact_container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.detail_image_container {
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.detail_image_container img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+ul {
+    list-style-type: none;
+}
