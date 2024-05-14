@@ -1,9 +1,16 @@
 import websiteLogo from "../assets/logo_mw_small.jpg";
 import './LogoLogin.css'
 import loginLogo from "../assets/userLogo.png";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export function LogoLogin() {
+
+    const navigate = useNavigate()
+
+    function toProfile() {
+        navigate("/login")
+    }
+
     return <div className={"logo_login_container"}>
 
         <div className={"logo_container"}>
@@ -13,7 +20,7 @@ export function LogoLogin() {
 
         <div className={"login_container"}>
             <div><Link id={"registration_link"} to={"/registration"}>Registrieren</Link></div>
-            <button id={"login_div"}>
+            <button id={"login_div"} onClick={toProfile}>
                 <img id={"login_logo"} src={loginLogo}/>
             </button>
         </div>

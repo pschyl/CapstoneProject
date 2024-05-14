@@ -1,0 +1,14 @@
+
+#submit_login {
+    border: none;
+    background-color: orange;
+    width: 80%;
+    margin-top: 25px;
+    height: 25px;
+    border-radius: 10px;
+}
+
+.login_main_container {
+    display: flex;
+    justify-content: center;
+}
