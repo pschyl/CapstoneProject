@@ -13,7 +13,7 @@ export function LogoLogin() {
 
     return <div className={"logo_login_container"}>
 
-        <div className={"logo_container"}>
+        <div className={"logo_container"} onClick={() => navigate("/")}>
             <img id="website_logo" src={websiteLogo}/>
             <p id={"headline"}>miwau</p>
         </div>
