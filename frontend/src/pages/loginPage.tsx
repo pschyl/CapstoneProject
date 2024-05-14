@@ -4,13 +4,13 @@ export default function LoginPage() {
     return <>
         <div className={"login_main_container"}>
             <form>
-                <ul>
+                <ul className={"login_list"}>
                     <h2>Login</h2>
-                    <li>
+                    <li className={"login_list_element"}>
                         <label htmlFor={"mail"}>Email</label>
                         <input id={"mail"} type={"text"}/>
                     </li>
-                    <li>
+                    <li className={"login_list_element"}>
                         <label htmlFor={"password"}>Password</label>
                         <input id={"password"} type={"password"}/>
                     </li>

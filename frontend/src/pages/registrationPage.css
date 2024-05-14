@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-ul {
+.registration_list {
     width: 300px;
     border: #748E8F solid 1px;
     border-radius: 10px;
@@ -15,7 +15,7 @@ ul {
     gap: 10px;
 }
 
-li {
+.registration_list_element {
     display: flex;
     flex-direction: column;
 }
