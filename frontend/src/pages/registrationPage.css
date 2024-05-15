@@ -33,9 +33,53 @@ label {
 #submit_registration {
     border: none;
     background-color: orange;
-    width: 80%;
+    width: 90%;
     margin-top: 25px;
-    height: 25px;
+    height: 30px;
     border-radius: 10px;
     cursor: pointer;
 }
+
+.registration_choice_container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+#registration_private {
+    display: none;
+}
+
+.registration_choice_element {
+    font-family: Arial;
+    font-size: small;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.registration_choice_element:hover {
+    border-bottom: lightgrey 3px solid;
+}
+
+.registration_variable_container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 10px;
+}
+
+#registration_shelter {
+    display: none;
+}
+
+#registration_private:checked + label {
+    border-bottom: #748E8F 3px solid;
+}
+
+#registration_shelter:checked + label {
+    border-bottom: #748E8F 3px solid;
+}
+
