@@ -4,7 +4,6 @@ import com.github.pschyl.backend.model.Coordinates;
 import com.opencagedata.jopencage.JOpenCageGeocoder;
 import com.opencagedata.jopencage.model.JOpenCageForwardRequest;
 import com.opencagedata.jopencage.model.JOpenCageResponse;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +11,7 @@ import java.util.NoSuchElementException;
 
 @Service
 public class CoordinateService {
+
 
     @Value("${OPEN_CAGE_KEY}")
     private String key;
