@@ -23,7 +23,7 @@ export default function PlacePetPage() {
 
 
     return <>
-        <div>
+        <div className={"add_search_container"}>
             <button>Place New Pet</button>
             <form>
                 <input type={"text"}/>

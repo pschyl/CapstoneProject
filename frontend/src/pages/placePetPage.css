@@ -2,4 +2,11 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 30px;
+    margin-top: 8vh;
+}
+
+.add_search_container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }

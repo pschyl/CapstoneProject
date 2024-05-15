@@ -22,7 +22,7 @@
 }
 
 .image_container img:hover {
-    scale: 105%;
+    scale: 102%;
     cursor: pointer;
 }
 
