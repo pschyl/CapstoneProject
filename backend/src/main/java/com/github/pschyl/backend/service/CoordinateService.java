@@ -13,9 +13,13 @@ import java.util.NoSuchElementException;
 @Service
 public class CoordinateService {
 
+    @Value("${OPEN_CAGE_KEY}")
+    private String key;
+
     public Coordinates transformLocationToCoordinates(String location) {
 
-        JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder("ed450abe46f64eab9a8f9fa0ac180b2d");
+
+        JOpenCageGeocoder jOpenCageGeocoder = new JOpenCageGeocoder(key);
 
         JOpenCageForwardRequest request = new JOpenCageForwardRequest(location);
 
