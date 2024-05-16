@@ -10,6 +10,7 @@
     margin-top: 10px;
     display: flex;
     flex-direction: row;
+    cursor: pointer;
 }
 
 #login_div {
@@ -50,7 +51,12 @@
     background-color: orange;
 }
 
-#registration_shortcut:hover {
+#registration_link:hover {
     cursor: pointer;
     color: orange;
+}
+
+#registration_link {
+    text-decoration: none;
+    color: #748E8F;
 }
