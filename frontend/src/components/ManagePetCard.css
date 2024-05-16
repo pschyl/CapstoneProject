@@ -48,7 +48,7 @@
     text-align: left;
 }
 
-th, td {
+.manage_table_container th, td {
     border-bottom: 1px solid #ddd;
 }
 
