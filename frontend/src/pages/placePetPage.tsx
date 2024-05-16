@@ -1,20 +1,24 @@
-import {useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {Pet} from "../model/Pet.ts";
 import axios from "axios";
 import {ManagePetCard} from "../components/ManagePetCard.tsx";
 import searchLogo from "../assets/search-icon.webp";
 import './placePetPage.css'
+import {Shelter} from "../model/Shelter.ts";
 
 export default function PlacePetPage() {
 
+    const shelter:Shelter = {id:"1", name:"Tierheim Berlin", postalCode:"50678"}
+
     const [petList, setPetList] = useState<Pet[]>([])
     const [isAdded, setIsAdded] = useState<boolean>(false)
-    const shelterName:string = "Tierheim Berlin";
+    const [newPet, setNewPet] = useState<Pet>({id:"", name:"", type:"", species:"", gender:"", castrated:"", age:"", description:"", images: [], shelter: shelter})
+    const [imageToSave, setImageToSave] = useState<string>("")
 
     function fetchPlacedPets() {
         axios.get("/api/pets")
             .then((response) => {setPetList(
-                response.data.filter((pet: Pet) => (pet.shelter.name === shelterName)))})
+                response.data.filter((pet: Pet) => (pet.shelter.name === shelter.name)))})
             .catch((error) => console.log(error.message))
     }
 
@@ -26,6 +30,24 @@ export default function PlacePetPage() {
         }
     }
 
+    function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const key = event.target.name
+        setNewPet({...newPet, [key]: event.target.value})
+        console.log(newPet)
+    }
+
+    function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
+        setImageToSave(event.target.value)
+        console.log(imageToSave)
+    }
+
+    function addImageToNewPet(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        newPet.images.push(imageToSave)
+        setImageToSave("")
+    }
+
+
     useEffect(() => {
         fetchPlacedPets()
     }, [petList])
@@ -34,13 +56,13 @@ export default function PlacePetPage() {
     return <>
         <div className={"add_search_container"}>
             {!isAdded ?
-                <button className={"add_pet_button"} onClick={placeNewPet}>+</button>
+                <button type={"button"} className={"add_pet_button"} onClick={placeNewPet}>+</button>
                 :
-                <button className={"add_pet_button"}  onClick={placeNewPet}>-</button>
+                <button type={"button"} className={"add_pet_button"}  onClick={placeNewPet}>-</button>
             }
                 <form>
                 <input type={"text"}/>
-                <button><img id={"search_logo"} src={searchLogo}/></button>
+                <button type={"button"}><img id={"search_logo"} src={searchLogo}/></button>
             </form>
         </div>
         {isAdded &&
@@ -50,68 +72,68 @@ export default function PlacePetPage() {
                     <tbody>
                     <tr>
                         <th className={"first_col"}>Name</th>
-                        <th><input type={"text"}/></th>
+                        <th><input onChange={handleInputChange} type={"text"} name={"name"} value={newPet.name}/></th>
                     </tr>
                     <tr>
                         <th className={"first_col"}>Sucht nach</th>
                         <th>
-                            <input id={"placetype_family"} type={"checkbox"}/>
+                            <input name={"type"} id={"placetype_family"} type={"radio"} onChange={handleInputChange} value={"Familienmitglied"}/>
                             <label htmlFor={"placetype_family"}>Familienmitglied</label>
                         </th>
                         <th>
-                            <input id={"placetype_temp"} type={"checkbox"}/>
+                            <input name={"type"} id={"placetype_temp"} type={"radio"} onChange={handleInputChange} value={"Befristete Pflege"}/>
                             <label htmlFor={"placetype_temp"}>Befristeter Pflege</label>
                         </th>
                         <th>
-                            <input id={"placetype_walk"} type={"checkbox"}/>
+                            <input name={"type"} id={"placetype_walk"} type={"radio"} onChange={handleInputChange} value={"Spazierbegleitung"}/>
                             <label htmlFor={"placetype_walk"}>Spazierbegleitung</label>
                         </th>
                     </tr>
                     <tr>
                         <th className={"first_col"}>Art</th>
                         <th>
-                            <input id={"species_cat"} type={"checkbox"}/>
+                            <input name={"species"} id={"species_cat"} type={"radio"} onChange={handleInputChange} value={"Katze"}/>
                             <label htmlFor={"species_cat"}>Katze</label>
                         </th>
                         <th>
-                            <input id={"species_dog"} type={"checkbox"}/>
+                            <input name={"species"} id={"species_dog"} type={"radio"} onChange={handleInputChange} value={"Hund"}/>
                             <label htmlFor={"species_dog"}>Hund</label>
                         </th>
                     </tr>
                     <tr>
                         <th className={"first_col"}>Geschlecht</th>
                         <th>
-                            <input id={"sex_female"} type={"checkbox"}/>
-                            <label htmlFor={"sex_female"}>Weiblich</label>
+                            <input name={"gender"} id={"gender_female"} type={"radio"} onChange={handleInputChange} value={"Weiblich"}/>
+                            <label htmlFor={"gender_female"}>Weiblich</label>
                         </th>
                         <th>
-                            <input id={"sex_male"} type={"checkbox"}/>
-                            <label htmlFor={"sex_male"}>Männlich</label>
+                            <input name={"gender"} id={"gender_male"} type={"radio"} onChange={handleInputChange} value={"Männlich"}/>
+                            <label htmlFor={"gender_male"}>Männlich</label>
                         </th>
                     </tr>
                     <tr>
                         <th className={"first_col"}>Kastriert</th>
                         <th>
-                            <input id={"castrated_yes"} type={"checkbox"}/>
+                            <input name={"castrated"} id={"castrated_yes"} type={"radio"} onChange={handleInputChange} value={"Ja"}/>
                             <label htmlFor={"castrated_yes"}>Ja</label>
                         </th>
                         <th>
-                            <input id={"castrated_no"} type={"checkbox"}/>
+                            <input name={"castrated"} id={"castrated_no"} type={"radio"} onChange={handleInputChange} value={"Nein"}/>
                             <label htmlFor={"castrated_no"}>Nein</label>
                         </th>
                     </tr>
                     <tr>
                         <th className={"first_col"}>Alter</th>
                         <th>
-                            <input id={"age_young"} type={"checkbox"}/>
+                            <input name={"age"} id={"age_young"} type={"radio"} onChange={handleInputChange} value={"Jung"}/>
                             <label htmlFor={"age_young"}>Jung</label>
                         </th>
                         <th>
-                            <input id={"age_adult"} type={"checkbox"}/>
+                            <input name={"age"} id={"age_adult"} type={"radio"} onChange={handleInputChange} value={"Erwachsen"}/>
                             <label htmlFor={"age_adult"}>Erwachsen</label>
                         </th>
                         <th>
-                            <input id={"age_old"} type={"checkbox"}/>
+                            <input name={"age"} id={"age_old"} type={"radio"} onChange={handleInputChange} value={"Alt"}/>
                             <label htmlFor={"age_old"}>Alt</label>
                         </th>
                     </tr>
@@ -120,14 +142,16 @@ export default function PlacePetPage() {
                 <table>
                     <tbody>
                     <tr>
-                        <label className={"first_col"} htmlFor={"input_description"}>Beschreibung</label>
-                        <th><textarea id={"input_description"} rows={4} cols={55} maxLength={200}></textarea></th>
+                        <th><label className={"first_col"} htmlFor={"input_description"}>Beschreibung</label></th>
+                        <th>
+                            <textarea id={"input_description"} name={"description"} rows={4} cols={55} maxLength={200} onChange={handleInputChange} value={newPet.description}></textarea>
+                        </th>
                     </tr>
                     <tr>
                         <th className={"first_col"}>Fotos</th>
                         <th>
-                            <input type={"text"} placeholder={"Dateipfad/URL"}/>
-                            <button>Datei hinzufügen</button>
+                            <input type={"text"} placeholder={"Dateipfad/URL"} name={"images"} value={imageToSave} onChange={handleImageChange}/>
+                            <button type={"submit"} onClick={addImageToNewPet}>Datei hinzufügen</button>
                         </th>
                     </tr>
                     </tbody>
