@@ -117,8 +117,8 @@ export default function FindPetPage() {
         <div className={"petCard_container"}>
             {petList.length ? petList.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
                     .map((pet: Pet) => (
-                        <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter}
-                                 key={pet.id}/>
+                        <PetCard id={pet.id} name={pet.name} type={pet.type} gender={pet.gender} age={pet.age} castrated={pet.castrated} description={pet.description} species={pet.species} shelter={pet.shelter}
+                                 images={pet.images} key={pet.id}/>
                     ))
                 : <div id={"no_result"}>
                     <div>keine Einträge gefunden</div>
