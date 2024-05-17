@@ -98,4 +98,36 @@ public class PetServiceTest {
         verify(mockrepo).findById("1");
         assertEquals(expected, actual);
     }
+
+    @Test
+    void editPetById_shouldReturnEditedPet_WhenCalledWithValidId() {
+        //GIVEN
+        String id = "1";
+        Pet expected = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
+
+        when(mockrepo.save(expected)).thenReturn(expected);
+
+        //WHEN
+        Pet actual = petService.editPetById(id, expected);
+
+        //THEN
+        verify(mockrepo).save(expected);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void deletePetById_shouldCallDeleteMethodFromRepo_WhenCalledWithValidID() {
+        //GIVEN
+        String id ="1";
+        Pet expected = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
+
+        when(mockrepo.findById(id)).thenReturn(Optional.of(expected));
+        doNothing().when(mockrepo).delete(expected);
+
+        //WHEN
+        Pet actual = petService.deletePetById(id);
+        //THEN
+        assertEquals(actual, expected);
+        verify(mockrepo).delete(expected);
+    }
 }
