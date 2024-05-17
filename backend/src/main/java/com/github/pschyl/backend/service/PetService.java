@@ -56,4 +56,9 @@ public class PetService {
         repo.delete(petToDelete);
         return petToDelete;
     }
+
+    public Pet editPetById(String id, Pet editedPet) {
+        repo.save(editedPet);
+        return editedPet;
+    }
 }

@@ -1,4 +1,4 @@
-import {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, MouseEventHandler, useEffect, useState} from "react";
 import {Pet} from "../model/Pet.ts";
 import axios from "axios";
 import {ManagePetCard} from "../components/ManagePetCard.tsx";
@@ -33,16 +33,13 @@ export default function PlacePetPage() {
     function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         const key = event.target.name
         setNewPet({...newPet, [key]: event.target.value})
-        console.log(newPet)
     }
 
     function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
         setImageToSave(event.target.value)
-        console.log(imageToSave)
     }
 
-    function addImageToNewPet(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
+    function addImageToNewPet() {
         newPet.images.push(imageToSave)
         setImageToSave("")
     }

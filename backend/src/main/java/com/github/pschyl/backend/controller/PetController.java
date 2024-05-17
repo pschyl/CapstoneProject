@@ -40,4 +40,9 @@ public class PetController {
         return service.deletePetById(id);
     }
 
+    @PutMapping("/{id}")
+    public Pet editPetById(@PathVariable String id, @RequestBody Pet editedPet) {
+        return service.editPetById(id, editedPet);
+    }
+
 }
