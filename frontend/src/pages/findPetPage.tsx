@@ -12,7 +12,7 @@ import {PetCard} from "../components/PetCard.tsx";
 export default function FindPetPage() {
     const [petList, setPetList] = useState<Pet[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
-    const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog", "Hund", "Katze"]})
+    const [filterRole, setFilterRole] = useState<FilterObject>({species: ["Hund", "Katze"]})
     const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "Familienmitglied", location: "", radius: 20})
     const [searchStatus, setSearchStatus] = useState<boolean>(false)
     const [lastSearchValue, setLastSearchValue] = useState<SearchObject>({searchType: "", location: "", radius: 0})
@@ -97,7 +97,7 @@ export default function FindPetPage() {
                     type={"checkbox"}
                     id={"species_filter_cat"}
                     checked={isChecked[0]}
-                    onChange={() => handleCheckboxChange(0, "cat")}
+                    onChange={() => handleCheckboxChange(0, "Katze")}
                 />
                 <label htmlFor={"species_filter_cat"}><img id="cat_logo" src={catLogo}/></label>
 
@@ -105,7 +105,7 @@ export default function FindPetPage() {
                     type={"checkbox"}
                     id={"species_filter_dog"}
                     checked={isChecked[1]}
-                    onChange={() => handleCheckboxChange(1, "dog")}
+                    onChange={() => handleCheckboxChange(1, "Hund")}
                 />
                 <label htmlFor={"species_filter_dog"}><img id="dog_logo" src={dogLogo}/></label>
             </div>

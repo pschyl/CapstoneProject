@@ -50,6 +50,32 @@
 
 .manage_table_container th, td {
     border-bottom: 1px solid #ddd;
+    width: 35%;
+    font-weight: normal;
+}
+
+.manage_table_container select {
+    width: 170px;
+    border: 1px solid whitesmoke;
+    border-radius: 3px;
+    background-color: whitesmoke;
+}
+
+.manage_table_container input {
+    width: 162px;
+}
+
+.manage_table_container button {
+    width: 170px;
+    border: 1px white solid;
+    border-radius: 7px;
+    background-color: orange;
+    padding: 3px;
+}
+
+.manage_table_container button:hover {
+    cursor: pointer;
+    background-color: forestgreen;
 }
 
 .manage_symbol:hover {

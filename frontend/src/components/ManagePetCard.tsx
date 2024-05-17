@@ -77,12 +77,12 @@ export function ManagePetCard(props:Readonly<Pet>) {
                     <tbody>
                     <tr>
                         <th>Name</th>
-                        <th><input type="text" value={props.name} name={"name"} onChange={handleInputChange}/></th>
+                        <th><input type="text" value={petToEdit.name} name={"name"} onChange={handleInputChange}/></th>
                     </tr>
                     <tr>
                         <th>Vermittlungstyp</th>
                         <th>
-                            <select value={props.type} name={"type"} onChange={handleInputChange}>
+                            <select value={petToEdit.type} name={"type"} onChange={handleInputChange}>
                                 <option value={""}>-</option>
                                 <option value={"Familienmitglied"}>Familienmitglied</option>
                                 <option value={"Befristete Pflege"}>Befristete Pflege</option>
@@ -93,7 +93,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
                     <tr>
                         <th>Geschlecht</th>
                         <th>
-                            <select value={props.gender} name={"gender"} onChange={handleInputChange}>
+                            <select value={petToEdit.gender} name={"gender"} onChange={handleInputChange}>
                                 <option value={""}>-</option>
                                 <option value={"Weiblich"}>Weiblich</option>
                                 <option value={"Männlich"}>Männlich</option>
@@ -103,7 +103,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
                     <tr>
                         <th>Alter</th>
                         <th>
-                            <select value={props.age} name={"age"} onChange={handleInputChange}>
+                            <select value={petToEdit.age} name={"age"} onChange={handleInputChange}>
                                 <option value={""}>-</option>
                                 <option value={"Jung"}>Jung</option>
                                 <option value={"Erwachsen"}>Erwachsen</option>
@@ -114,7 +114,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
                     <tr>
                         <th>Kastriert?</th>
                         <th>
-                            <select value={props.castrated} name={"castrated"} onChange={handleInputChange}>
+                            <select value={petToEdit.castrated} name={"castrated"} onChange={handleInputChange}>
                                 <option value={""}>-</option>
                                 <option value={"Ja"}>Ja</option>
                                 <option value={"Nein"}>Nein</option>
@@ -123,7 +123,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
                     </tr>
                     <tr>
                         <th>Beschreibung</th>
-                        <th><textarea id={"input_description"} name={"description"} rows={4} cols={55} maxLength={200} value={props.description} onChange={handleInputChange}></textarea></th>
+                        <th><textarea id={"input_description"} name={"description"} rows={4} cols={55} maxLength={200} value={petToEdit.description} onChange={handleInputChange}></textarea></th>
                     </tr>
                     <tr>
                         <th></th>

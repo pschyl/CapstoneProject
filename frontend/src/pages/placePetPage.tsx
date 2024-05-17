@@ -1,4 +1,4 @@
-import {ChangeEvent, FormEvent, MouseEventHandler, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {Pet} from "../model/Pet.ts";
 import axios from "axios";
 import {ManagePetCard} from "../components/ManagePetCard.tsx";
@@ -14,6 +14,7 @@ export default function PlacePetPage() {
     const [isAdded, setIsAdded] = useState<boolean>(false)
     const [newPet, setNewPet] = useState<Pet>({id:"", name:"", type:"", species:"", gender:"", castrated:"", age:"", description:"", images: [], shelter: shelter})
     const [imageToSave, setImageToSave] = useState<string>("")
+    const [searchInput, setSearchInput] = useState<string>("")
 
     function fetchPlacedPets() {
         axios.get("/api/pets")
@@ -39,6 +40,11 @@ export default function PlacePetPage() {
         setImageToSave(event.target.value)
     }
 
+    function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
+        setSearchInput(event.target.value)
+        console.log(searchInput)
+    }
+
     function addImageToNewPet() {
         newPet.images.push(imageToSave)
         setImageToSave("")
@@ -60,13 +66,15 @@ export default function PlacePetPage() {
 
     return <>
         <div className={"add_search_container"}>
+            <div id={"add_pet_button_container"}>
             {!isAdded ?
                 <button type={"button"} className={"add_pet_button"} onClick={placeNewPet}>+</button>
                 :
                 <button type={"button"} className={"add_pet_button"}  onClick={placeNewPet}>-</button>
             }
-                <form>
-                <input type={"text"}/>
+            </div>
+            <form>
+                <input type={"text"} placeholder={"Suche"} value={searchInput} onChange={handleSearchChange}/>
                 <button type={"button"}><img id={"search_logo"} src={searchLogo}/></button>
             </form>
         </div>
@@ -149,7 +157,7 @@ export default function PlacePetPage() {
                     <tr>
                         <th><label className={"first_col"} htmlFor={"input_description"}>Beschreibung</label></th>
                         <th>
-                            <textarea id={"input_description"} name={"description"} rows={4} cols={55} maxLength={200} onChange={handleInputChange} value={newPet.description}></textarea>
+                            <textarea id={"input_description"} placeholder={"Max 200 Zeichen"} name={"description"} rows={4} cols={55} maxLength={200} onChange={handleInputChange} value={newPet.description}></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -168,7 +176,8 @@ export default function PlacePetPage() {
         </form>
         }
         <div className={"card_container"}>
-            {petList.map((pet: Pet) => (
+            {petList.filter((pet: Pet) => pet.name.toLowerCase().includes(searchInput))
+                .map((pet: Pet) => (
                 <ManagePetCard id={pet.id} name={pet.name} type={pet.type} gender={pet.gender} age={pet.age} castrated={pet.castrated} description={pet.description} species={pet.species} shelter={pet.shelter}
                                images={pet.images} key={pet.id}/>
             ))}
