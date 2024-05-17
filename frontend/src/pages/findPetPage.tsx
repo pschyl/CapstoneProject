@@ -12,7 +12,7 @@ import {PetCard} from "../components/PetCard.tsx";
 export default function FindPetPage() {
     const [petList, setPetList] = useState<Pet[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
-    const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog"]})
+    const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog", "Hund", "Katze"]})
     const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "Familienmitglied", location: "", radius: 20})
     const [searchStatus, setSearchStatus] = useState<boolean>(false)
     const [lastSearchValue, setLastSearchValue] = useState<SearchObject>({searchType: "", location: "", radius: 0})

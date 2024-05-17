@@ -47,6 +47,14 @@ export default function PlacePetPage() {
         setImageToSave("")
     }
 
+    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        axios.post("/api/pets", newPet)
+            .then(() => {setNewPet({id:"", name:"", type:"", species:"", gender:"", castrated:"", age:"", description:"", images: [], shelter: shelter})})
+            .catch(e => {console.log(e.message)})
+        setIsAdded(false)
+    }
+
 
     useEffect(() => {
         fetchPlacedPets()
@@ -66,7 +74,7 @@ export default function PlacePetPage() {
             </form>
         </div>
         {isAdded &&
-        <form className={"place_pet_form"}>
+        <form onSubmit={handleSubmit} className={"place_pet_form"}>
             <div className={"table_container"}>
                 <table>
                     <tbody>
@@ -151,7 +159,7 @@ export default function PlacePetPage() {
                         <th className={"first_col"}>Fotos</th>
                         <th>
                             <input type={"text"} placeholder={"Dateipfad/URL"} name={"images"} value={imageToSave} onChange={handleImageChange}/>
-                            <button type={"submit"} onClick={addImageToNewPet}>Datei hinzufügen</button>
+                            <button type={"button"} onClick={addImageToNewPet}>Datei hinzufügen</button>
                         </th>
                     </tr>
                     </tbody>
