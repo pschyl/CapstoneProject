@@ -50,10 +50,10 @@ export default function RegistrationPage() {
             console.log("Confirmation does match password")
             if (isChecked[0]) {
                 axios.post("api/user", newUser)
-                    .then(() => navigate("/"))
+                    .then(() => navigate("/login"))
             } else if (isChecked[1]) {
                 axios.post("api/shelter", newShelter)
-                    .then(() => navigate("/place"))
+                    .then(() => navigate("/login"))
             }
 
         }
