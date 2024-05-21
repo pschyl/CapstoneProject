@@ -176,7 +176,7 @@ export default function PlacePetPage() {
         </form>
         }
         <div className={"card_container"}>
-            {petList.filter((pet: Pet) => pet.name.toLowerCase().includes(searchInput))
+            {petList.filter((pet: Pet) => pet.name.toLowerCase().includes(searchInput.toLowerCase()))
                 .map((pet: Pet) => (
                 <ManagePetCard id={pet.id} name={pet.name} type={pet.type} gender={pet.gender} age={pet.age} castrated={pet.castrated} description={pet.description} species={pet.species} shelter={pet.shelter}
                                images={pet.images} key={pet.id}/>
