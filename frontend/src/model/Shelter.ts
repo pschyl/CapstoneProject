@@ -2,5 +2,10 @@
 export type Shelter = {
     id: string,
     name: string,
-    postalCode: string
+    street: string,
+    postalCode: string,
+    city: string,
+    mail: string,
+    userName: string,
+    password: string
 }
