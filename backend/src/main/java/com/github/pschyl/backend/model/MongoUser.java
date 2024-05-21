@@ -1,4 +1,4 @@
-package com.github.pschyl.backend.security;
+package com.github.pschyl.backend.model;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

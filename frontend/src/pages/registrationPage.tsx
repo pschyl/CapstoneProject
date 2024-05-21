@@ -1,7 +1,9 @@
 import './registrationPage.css'
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import {User} from "../model/User.ts";
 import {Shelter} from "../model/Shelter.ts";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export type RegistrationProps = {
     mail: string,
@@ -16,6 +18,7 @@ export default function RegistrationPage() {
     const [newUser, setNewUser] = useState<User>({id: "", firstName:"", lastName:"", mail: newRegistration.mail, userName: newRegistration.userName, password: newRegistration.password})
     const [passwordConfirmation, setPasswordConfirmation] = useState<string>("")
     const [newShelter, setNewShelter] = useState<Shelter>({id: "", name: "", street: "", postalCode:"", city:"", mail: newRegistration.mail, userName: newRegistration.userName, password: newRegistration.password})
+    const navigate = useNavigate();
 
     function handleCheckboxChange(checkboxNumber:number) {
         if (checkboxNumber === 0) {
@@ -37,13 +40,29 @@ export default function RegistrationPage() {
                 setNewShelter({...newShelter, [key]: event.target.value})
             }
         }
+    }
 
+    function onSubmitRegister(event: FormEvent<HTMLFormElement>) {
+        if (passwordConfirmation !== newRegistration.password) {
+            alert("Confirmation doesn't match password")
+        } else {
+            event.preventDefault()
+            console.log("Confirmation does match password")
+            if (isChecked[0]) {
+                axios.post("api/user", newUser)
+                    .then(() => navigate("/"))
+            } else if (isChecked[1]) {
+                axios.post("api/shelter", newShelter)
+                    .then(() => navigate("/place"))
+            }
+
+        }
     }
 
 
     return <>
         <div className={"registration_main_container"}>
-            <form>
+            <form onSubmit={onSubmitRegister}>
                 <ul className={"registration_list"}>
                     <h2>Account erstellen</h2>
                     <li className={"registration_choice_container"}>

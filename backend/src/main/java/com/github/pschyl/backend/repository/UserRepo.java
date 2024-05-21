@@ -1,12 +1,13 @@
-package com.github.pschyl.backend.security;
+package com.github.pschyl.backend.repository;
 
 
+import com.github.pschyl.backend.model.MongoUser;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface MongoUserRepo extends MongoRepository<MongoUser, String> {
+public interface UserRepo extends MongoRepository<MongoUser, String> {
     Optional<MongoUser> findByUsername(String username);
 }
