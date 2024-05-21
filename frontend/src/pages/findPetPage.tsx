@@ -12,7 +12,7 @@ import {PetCard} from "../components/PetCard.tsx";
 export default function FindPetPage() {
     const [petList, setPetList] = useState<Pet[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([false, false])
-    const [filterRole, setFilterRole] = useState<FilterObject>({species: ["cat", "dog"]})
+    const [filterRole, setFilterRole] = useState<FilterObject>({species: ["Hund", "Katze"]})
     const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "Familienmitglied", location: "", radius: 20})
     const [searchStatus, setSearchStatus] = useState<boolean>(false)
     const [lastSearchValue, setLastSearchValue] = useState<SearchObject>({searchType: "", location: "", radius: 0})
@@ -97,7 +97,7 @@ export default function FindPetPage() {
                     type={"checkbox"}
                     id={"species_filter_cat"}
                     checked={isChecked[0]}
-                    onChange={() => handleCheckboxChange(0, "cat")}
+                    onChange={() => handleCheckboxChange(0, "Katze")}
                 />
                 <label htmlFor={"species_filter_cat"}><img id="cat_logo" src={catLogo}/></label>
 
@@ -105,7 +105,7 @@ export default function FindPetPage() {
                     type={"checkbox"}
                     id={"species_filter_dog"}
                     checked={isChecked[1]}
-                    onChange={() => handleCheckboxChange(1, "dog")}
+                    onChange={() => handleCheckboxChange(1, "Hund")}
                 />
                 <label htmlFor={"species_filter_dog"}><img id="dog_logo" src={dogLogo}/></label>
             </div>
@@ -117,8 +117,8 @@ export default function FindPetPage() {
         <div className={"petCard_container"}>
             {petList.length ? petList.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
                     .map((pet: Pet) => (
-                        <PetCard id={pet.id} name={pet.name} species={pet.species} images={pet.images} shelter={pet.shelter}
-                                 key={pet.id}/>
+                        <PetCard id={pet.id} name={pet.name} type={pet.type} gender={pet.gender} age={pet.age} castrated={pet.castrated} description={pet.description} species={pet.species} shelter={pet.shelter}
+                                 images={pet.images} key={pet.id}/>
                     ))
                 : <div id={"no_result"}>
                     <div>keine Einträge gefunden</div>

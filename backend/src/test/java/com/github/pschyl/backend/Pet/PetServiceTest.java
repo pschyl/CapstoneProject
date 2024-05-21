@@ -28,7 +28,7 @@ public class PetServiceTest {
     @Test
     void getAllPets_shouldReturnListWithElementDjango_WhenCalled() {
         //GIVEN
-        Pet newPet = new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture"));
+        Pet newPet = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
         List<Pet> expected = List.of(newPet);
 
         when(mockrepo.findAll()).thenReturn(expected);
@@ -44,7 +44,7 @@ public class PetServiceTest {
     @Test
     void getAllWithinRadius_shouldReturnEmptyList_whenCalledWithBonnAnd10() {
         //GIVEN
-        Pet newPet = new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture"));
+        Pet newPet = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
         List<Pet> expected = Collections.emptyList();
         String location = "Bonn";
         int radius = 10;
@@ -60,7 +60,7 @@ public class PetServiceTest {
     @Test
     void getAllWithinRadius_shouldReturnListWithDjangoElement_whenCalledWithBonnAnd50() {
         //GIVEN
-        Pet newPet = new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture"));
+        Pet newPet = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
         List<Pet> expected = List.of(newPet);
         String location = "Bonn";
         int radius = 50;
@@ -77,30 +77,57 @@ public class PetServiceTest {
     @Test
     void saveNewPet_shouldReturnPetDjango_WhenCalledWithTestPet() {
         //GIVEN
-        Pet expected = new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture"));
+        Pet expected = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
         when(idService.generateId()).thenReturn("1");
-        PetWOId testPet = new PetWOId(
-                "Django",
-                "cat",
-                shelter,
-                List.of("www.example.de/picture")
-        );
+        PetWOId testPet = new PetWOId("Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
         //WHEN
         Pet actual = petService.saveNewPet(testPet);
         //THEN
         assertEquals(expected, actual);
-        verify(mockrepo).save(new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture")));
+        verify(mockrepo).save(new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter));
     }
 
     @Test
     void getPetById_ShouldReturnPetDjango_WhenCalledWith1() {
         //GIVEN
-        Pet expected = new Pet("1", "Django", "cat", shelter, List.of("www.example.de/picture"));
+        Pet expected = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
         when(mockrepo.findById("1")).thenReturn(Optional.of(expected));
         //WHEN
         Pet actual = petService.getPetById("1");
         //THEN
         verify(mockrepo).findById("1");
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void editPetById_shouldReturnEditedPet_WhenCalledWithValidId() {
+        //GIVEN
+        String id = "1";
+        Pet expected = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
+
+        when(mockrepo.save(expected)).thenReturn(expected);
+
+        //WHEN
+        Pet actual = petService.editPetById(id, expected);
+
+        //THEN
+        verify(mockrepo).save(expected);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void deletePetById_shouldCallDeleteMethodFromRepo_WhenCalledWithValidID() {
+        //GIVEN
+        String id ="1";
+        Pet expected = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
+
+        when(mockrepo.findById(id)).thenReturn(Optional.of(expected));
+        doNothing().when(mockrepo).delete(expected);
+
+        //WHEN
+        Pet actual = petService.deletePetById(id);
+        //THEN
+        assertEquals(actual, expected);
+        verify(mockrepo).delete(expected);
     }
 }

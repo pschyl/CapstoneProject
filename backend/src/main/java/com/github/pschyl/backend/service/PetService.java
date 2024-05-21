@@ -26,9 +26,15 @@ public class PetService {
         Pet pet = new Pet(
                 idService.generateId(),
                 newPet.getName(),
+                newPet.getType(),
                 newPet.getSpecies(),
-                newPet.getShelter(),
-                newPet.getImages()
+                newPet.getGender(),
+                newPet.getCastrated(),
+                newPet.getAge(),
+                newPet.getDescription(),
+                newPet.getImages(),
+                newPet.getShelter()
+
         );
         repo.save(pet);
         return pet;
@@ -43,5 +49,16 @@ public class PetService {
 
     public Pet getPetById(String id) {
         return repo.findById(id).orElseThrow();
+    }
+
+    public Pet deletePetById(String id) {
+        Pet petToDelete = repo.findById(id).orElseThrow();
+        repo.delete(petToDelete);
+        return petToDelete;
+    }
+
+    public Pet editPetById(String id, Pet editedPet) {
+        repo.save(editedPet);
+        return editedPet;
     }
 }
