@@ -16,6 +16,8 @@ export default function PlacePetPage() {
     const [imageToSave, setImageToSave] = useState<string>("")
     const [searchInput, setSearchInput] = useState<string>("")
 
+
+
     function fetchPlacedPets() {
         axios.get("/api/pets")
             .then((response) => {setPetList(
@@ -61,7 +63,7 @@ export default function PlacePetPage() {
 
     useEffect(() => {
         fetchPlacedPets()
-    }, [petList])
+    }, [fetchPlacedPets, petList])
 
 
     return <>

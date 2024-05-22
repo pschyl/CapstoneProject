@@ -28,8 +28,4 @@ public class ShelterController {
         return service.saveNewShelter(newShelter);
     }
 
-    @PostMapping("/login")
-    public String login() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
 }

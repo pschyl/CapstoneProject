@@ -2,6 +2,7 @@ import websiteLogo from "../assets/logo_mw_small.jpg";
 import './LogoLogin.css'
 import loginLogo from "../assets/userLogo.png";
 import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 type LogoLoginProps = {
     user:string;
@@ -9,10 +10,19 @@ type LogoLoginProps = {
 
 export function LogoLogin(props: LogoLoginProps) {
 
+
     const navigate = useNavigate()
 
     function toProfile() {
-        navigate("/login")
+        if (props.user === "anonymousUser") {
+            navigate("/login")
+        }
+    }
+
+    function logout() {
+        axios.post("/api/user/logout")
+            .then(() => props.user = "anonymousUser")
+            .then(() => navigate("/login"))
     }
 
     return <div className={"logo_login_container"}>
@@ -32,9 +42,19 @@ export function LogoLogin(props: LogoLoginProps) {
                 }
             </div>
 
-            <button id={"login_div"} onClick={toProfile}>
-                <img id={"login_logo"} src={loginLogo}/>
-            </button>
+            <div className={"dropdown"}>
+                <button id={"login_div"} className={"dropbtn"} onClick={toProfile}>
+                    <img id={"login_logo"} src={loginLogo}/>
+                </button>
+                {props.user !== "anonymousUser" &&
+                    <div className={"dropdown-content"}>
+                        <a>Profil</a>
+                        <a>Nachrichten</a>
+                        <a onClick={logout}>Logout</a>
+                    </div>
+                }
+            </div>
+
         </div>
     </div>
 }

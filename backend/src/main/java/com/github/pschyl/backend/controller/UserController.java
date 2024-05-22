@@ -3,6 +3,7 @@ package com.github.pschyl.backend.controller;
 import com.github.pschyl.backend.dto.UserWOId;
 import com.github.pschyl.backend.model.AppUser;
 import com.github.pschyl.backend.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -23,5 +24,11 @@ public class UserController {
     @PostMapping("/login")
     public String login() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
+    @PostMapping("/logout")
+    public void logout(HttpSession session) {
+        session.invalidate();
+        SecurityContextHolder.clearContext();
     }
 }
