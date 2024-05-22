@@ -11,7 +11,7 @@ public class MongoUser {
     private final String firstName;
     private final String lastName;
     private final String mail;
-    private final String username;
+    private final String userName;
     private final String password;
 
 }

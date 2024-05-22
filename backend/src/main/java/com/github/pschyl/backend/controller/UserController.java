@@ -4,10 +4,8 @@ import com.github.pschyl.backend.dto.UserWOId;
 import com.github.pschyl.backend.model.MongoUser;
 import com.github.pschyl.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -19,5 +17,11 @@ public class UserController {
     @PostMapping
     public MongoUser registerNewUser(@RequestBody UserWOId newUser) {
         return  service.registerNewUser(newUser);
+    }
+
+
+    @PostMapping("/login")
+    public String login() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }

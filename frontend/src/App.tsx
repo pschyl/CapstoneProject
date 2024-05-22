@@ -7,16 +7,19 @@ import FindPetDetailPage from "./pages/findPetDetailPage.tsx";
 import RegistrationPage from "./pages/registrationPage.tsx";
 import LoginPage from "./pages/loginPage.tsx";
 import PlacePetPage from "./pages/placePetPage.tsx";
+import {useState} from "react";
 
 export default App
 
 function App() {
 
+    const[user, setUser] = useState<string>("anonymousUser")
+
 
   return (
     <>
         <header>
-            <LogoLogin />
+            <LogoLogin user={user} />
             <NavBar />
         </header>
         <main>
@@ -24,7 +27,7 @@ function App() {
                 <Route path={"/"} element={<FindPetPage />} />
                 <Route path={"/find/:id"} element={<FindPetDetailPage />} />
                 <Route path={"/registration"} element={<RegistrationPage />} />
-                <Route path={"/login"} element={<LoginPage />} />
+                <Route path={"/login"} element={<LoginPage setUser={setUser} />} />
                 <Route path={"/place"} element={<PlacePetPage />} />
             </Routes>
         </main>
