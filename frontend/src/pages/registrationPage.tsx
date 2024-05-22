@@ -131,7 +131,7 @@ export default function RegistrationPage() {
                         <label htmlFor={"registration_confirmation"}>Password nochmals eingeben</label>
                         <input id={"registration_confirmation"} type={"password"} name={"confirmation"} onChange={handleInputChange} value={passwordConfirmation}/>
                     </li>
-                    <button id={"submit_registration"} type={"submit"}>Weiter</button>
+                    <button id={"submit_registration"} type={"submit"}>Erstellen</button>
                 </ul>
             </form>
         </div>

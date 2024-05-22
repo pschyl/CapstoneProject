@@ -1,15 +1,16 @@
 package com.github.pschyl.backend.service;
 
 import com.github.pschyl.backend.dto.ShelterWOIdAndCoordinates;
-import com.github.pschyl.backend.model.Coordinates;
-import com.github.pschyl.backend.model.Pet;
 import com.github.pschyl.backend.model.Shelter;
-import com.github.pschyl.backend.repository.PetRepo;
 import com.github.pschyl.backend.repository.ShelterRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service

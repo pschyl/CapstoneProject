@@ -2,7 +2,6 @@ import websiteLogo from "../assets/logo_mw_small.jpg";
 import './LogoLogin.css'
 import loginLogo from "../assets/userLogo.png";
 import {Link, useNavigate} from "react-router-dom";
-import {useState} from "react";
 
 type LogoLoginProps = {
     user:string;

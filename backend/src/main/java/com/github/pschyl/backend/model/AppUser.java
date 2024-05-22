@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class MongoUser {
+public class AppUser {
 
     private final String id;
     private final String firstName;

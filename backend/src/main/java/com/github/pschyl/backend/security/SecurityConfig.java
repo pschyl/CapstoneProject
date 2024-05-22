@@ -30,7 +30,6 @@ public class SecurityConfig {
                 })
                 .sessionManagement(client -> client.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults())
                 .logout(Customizer.withDefaults())
                 .build();
     }

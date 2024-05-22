@@ -1,7 +1,7 @@
 package com.github.pschyl.backend.controller;
 
 import com.github.pschyl.backend.dto.UserWOId;
-import com.github.pschyl.backend.model.MongoUser;
+import com.github.pschyl.backend.model.AppUser;
 import com.github.pschyl.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +15,7 @@ public class UserController {
     private final UserService service;
 
     @PostMapping
-    public MongoUser registerNewUser(@RequestBody UserWOId newUser) {
+    public AppUser registerNewUser(@RequestBody UserWOId newUser) {
         return  service.registerNewUser(newUser);
     }
 
