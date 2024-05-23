@@ -2,6 +2,7 @@ package com.github.pschyl.backend.service;
 
 import com.github.pschyl.backend.dto.UserWOId;
 import com.github.pschyl.backend.model.AppUser;
+import com.github.pschyl.backend.model.Role;
 import com.github.pschyl.backend.model.Shelter;
 import com.github.pschyl.backend.repository.ShelterRepo;
 import com.github.pschyl.backend.repository.UserRepo;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -30,10 +32,10 @@ public class UserService implements UserDetailsService {
         Optional<AppUser> oUser = repo.findUserByUserName(username);
         if (oUser.isPresent()) {
             AppUser user = oUser.get();
-            return new User(user.getUserName(), user.getPassword(), Collections.emptyList());
+            return new User(user.getUserName(), user.getPassword(), List.of(user.getRole()));
         } else {
             Shelter shelter = shelterRepo.findShelterByUserName(username).orElseThrow();
-            return new User(shelter.getUserName(), shelter.getPassword(), Collections.emptyList());
+            return new User(shelter.getUserName(), shelter.getPassword(), List.of(shelter.getRole()));
         }
     }
 
@@ -45,10 +47,15 @@ public class UserService implements UserDetailsService {
                 newUser.getLastName(),
                 newUser.getMail(),
                 newUser.getUserName(),
-                hashService.hashPassword(newUser.getPassword())
+                hashService.hashPassword(newUser.getPassword()),
+                Role.PRIVATE
         );
 
         repo.save(user);
         return user;
+    }
+
+    public AppUser getUserByUsername(String username) {
+        return repo.findUserByUserName(username).orElseThrow();
     }
 }

@@ -28,4 +28,9 @@ public class ShelterController {
         return service.saveNewShelter(newShelter);
     }
 
+    @GetMapping("/{username}")
+    public Shelter getShelterByUsername(@PathVariable String username) {
+        return service.getShelterByUsername(username);
+    }
+
 }

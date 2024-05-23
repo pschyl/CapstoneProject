@@ -10,7 +10,6 @@ export function ManagePetCard(props:Readonly<Pet>) {
 
     function handleInputChange(event:ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         setPetToEdit({...petToEdit, [event.target.name]: event.target.value})
-        console.log(petToEdit)
     }
 
 

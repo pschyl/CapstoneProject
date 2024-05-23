@@ -16,6 +16,7 @@ public class Shelter {
     private final String userName;
     private final String password;
     private final Coordinates coordinates;
+    private final Role role;
 
 }
 

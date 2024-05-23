@@ -2,6 +2,7 @@ package com.github.pschyl.backend.Shelter;
 
 import com.github.pschyl.backend.dto.ShelterWOIdAndCoordinates;
 import com.github.pschyl.backend.model.Coordinates;
+import com.github.pschyl.backend.model.Role;
 import com.github.pschyl.backend.model.Shelter;
 import com.github.pschyl.backend.repository.ShelterRepo;
 import com.github.pschyl.backend.service.CoordinateService;
@@ -24,7 +25,7 @@ public class ShelterServiceTest {
     @Test
     void getAllShelter_shouldReturnListWithElementTierheimDellbrück_WhenCalled() {
         //GIVEN
-        Shelter shelter = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123", new Coordinates(50.96214243254786, 7.086788534833288));
+        Shelter shelter = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
         List<Shelter> expected = List.of(shelter);
 
         when(mockrepo.findAll()).thenReturn(expected);
@@ -39,7 +40,7 @@ public class ShelterServiceTest {
     void saveNewShelter_shouldReturnTierheimDellbrück_WhenCalledWithDto() {
         //GIVEN
         ShelterWOIdAndCoordinates newShelter = new ShelterWOIdAndCoordinates("Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123");
-        Shelter expected = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123", new Coordinates(50.96214243254786, 7.086788534833288));
+        Shelter expected = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
 
         when(mockIdService.generateId()).thenReturn("1");
         when(mockCoordianteService.transformLocationToCoordinates("51069")).thenReturn(new Coordinates(50.96214243254786, 7.086788534833288));

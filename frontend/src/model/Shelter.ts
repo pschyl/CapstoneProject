@@ -7,5 +7,6 @@ export type Shelter = {
     city: string,
     mail: string,
     userName: string,
-    password: string
+    password: string,
+    role: string
 }

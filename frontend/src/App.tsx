@@ -11,25 +11,67 @@ import {useState} from "react";
 import websiteLogo from "./assets/logo_mw_small.jpg";
 import loginLogo from "./assets/userLogo.png";
 import axios from "axios";
+import {User} from "./model/User.ts";
+import {Shelter} from "./model/Shelter.ts";
 
 export default App
 
 function App() {
 
-    const[user, setUser] = useState<string>("anonymousUser")
+    const [loggedInUser, setLoggedInUser] = useState<User>({
+        id: "",
+        firstName: "",
+        lastName: "",
+        mail: "",
+        userName: "",
+        password: "",
+        role: ""
+    })
+    const [loggedInShelter, setLoggedInShelter] = useState<Shelter>({
+        id: "",
+        name: "",
+        street: "",
+        postalCode: "",
+        city: "",
+        mail: "",
+        userName: "",
+        password: "",
+        role: ""
+    })
+
     const navigate = useNavigate()
 
     function toProfile() {
-        if (user === "anonymousUser") {
+        if (loggedInUser.userName === "" && loggedInShelter.userName === "") {
             navigate("/login")
         }
     }
 
     function logout() {
         axios.post("/api/user/logout")
-            .then(() => setUser("anonymousUser"))
+            .then(() => setLoggedInUser({
+                id: "",
+                firstName: "",
+                lastName: "",
+                mail: "",
+                userName: "",
+                password: "",
+                role: ""
+            }))
+            .then(() => setLoggedInShelter({
+                id: "",
+                name: "",
+                street: "",
+                postalCode: "",
+                city: "",
+                mail: "",
+                userName: "",
+                password: "",
+                role: ""
+            }))
             .then(() => navigate("/login"))
     }
+
 
   return (
     <>
@@ -43,18 +85,18 @@ function App() {
                 <div className={"login_container"}>
 
                     <div>
-                        {user === "anonymousUser" ?
+                        {loggedInUser.userName === "" && loggedInShelter.userName === "" ?
                             <Link id={"registration_link"} to={"/registration"}>Registrieren</Link>
                             :
-                            <div>{user}</div>
-                        }
-                    </div>
+                            <div>{loggedInUser.userName}{loggedInShelter.userName}</div>
+                    }
+                </div>
 
                     <div className={"dropdown"}>
                         <button id={"login_div"} className={"dropbtn"} onClick={toProfile}>
                             <img id={"login_logo"} src={loginLogo}/>
                         </button>
-                        {user !== "anonymousUser" &&
+                        {(loggedInUser.userName !== "" || loggedInShelter.userName !== "") &&
                             <div className={"dropdown-content"}>
                                 <a>Profil</a>
                                 <a>Nachrichten</a>
@@ -72,8 +114,8 @@ function App() {
                 <Route path={"/"} element={<FindPetPage/>}/>
                 <Route path={"/find/:id"} element={<FindPetDetailPage/>}/>
                 <Route path={"/registration"} element={<RegistrationPage/>}/>
-                <Route path={"/login"} element={<LoginPage setUser={setUser}/>}/>
-                <Route path={"/place"} element={<PlacePetPage/>}/>
+                <Route path={"/login"} element={<LoginPage setUser={setLoggedInUser} setShelter={setLoggedInShelter}/>}/>
+                <Route path={"/place"} element={<PlacePetPage shelter={loggedInShelter}/>}/>
             </Routes>
         </main>
         <footer>

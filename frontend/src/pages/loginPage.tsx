@@ -2,26 +2,30 @@ import "./loginPage.css"
 import {FormEvent, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {User} from "../model/User.ts";
+import {Shelter} from "../model/Shelter.ts";
 
 
 type LoginPageProps = {
-    setUser: (user:string) => void
+    setUser: (user:User) => void
+    setShelter: (shelter: Shelter) => void
 }
 
 export default function LoginPage(props: LoginPageProps) {
 
     const [username, setUsername] = useState<string>("")
     const [password, setPassword] = useState<string>("")
-
     const navigate = useNavigate()
 
     function onSubmitLogin(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         axios.post("/api/user/login", undefined, {auth: {username, password}})
-            .then(response => props.setUser(response.data))
+            .then(response => { if(response.data.user !== null) {props.setUser(response.data.user)}
+    else {props.setShelter(response.data.shelter)}})
             .then(() => navigate("/"))
             .catch(e => console.log(e.response))
     }
+
 
 
     return <>

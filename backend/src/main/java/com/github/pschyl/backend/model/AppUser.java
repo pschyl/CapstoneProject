@@ -13,5 +13,6 @@ public class AppUser {
     private final String mail;
     private final String userName;
     private final String password;
+    private final Role role;
 
 }

@@ -3,6 +3,7 @@ package com.github.pschyl.backend.Pet;
 import com.github.pschyl.backend.dto.PetWOId;
 import com.github.pschyl.backend.model.Coordinates;
 import com.github.pschyl.backend.model.Pet;
+import com.github.pschyl.backend.model.Role;
 import com.github.pschyl.backend.model.Shelter;
 import com.github.pschyl.backend.repository.PetRepo;
 import com.github.pschyl.backend.service.CoordinateService;
@@ -23,7 +24,7 @@ public class PetServiceTest {
     IdService idService = mock(IdService.class);
     CoordinateService coordinateService = mock(CoordinateService.class);
     PetService petService = new PetService(mockrepo, idService, coordinateService);
-    Shelter shelter = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123", new Coordinates(50.96214243254786, 7.086788534833288));
+    Shelter shelter = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
 
     @Test
     void getAllPets_shouldReturnListWithElementDjango_WhenCalled() {
