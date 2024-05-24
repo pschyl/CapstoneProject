@@ -86,7 +86,6 @@ public class UserServiceTest {
         //GIVEN
         String username = "TH_DellB";
         Shelter shelter = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "TH_DellB", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
-        AppUser user = new AppUser("1", "Vincent", "Freckmann", "v.freckmann@yahoo.de", "vreckmann", "abc", Role.PRIVATE);
 
         UserDetails expected = new User(shelter.getUserName(), shelter.getPassword(), List.of(shelter.getRole()));
 
