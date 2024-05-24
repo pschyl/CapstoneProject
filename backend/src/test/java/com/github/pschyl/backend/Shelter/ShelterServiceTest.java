@@ -26,9 +26,9 @@ public class ShelterServiceTest {
 
 
     @Test
-    void getAllShelter_shouldReturnListWithElementTierheimDellbrück_WhenCalled() {
+    void getAllShelter_shouldReturnListWithElementTierheimDellbruck_WhenCalled() {
         //GIVEN
-        Shelter shelter = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
+        Shelter shelter = new Shelter("1", "Tierheim Dellbruck", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbruck", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
         List<Shelter> expected = List.of(shelter);
 
         when(mockrepo.findAll()).thenReturn(expected);
@@ -40,10 +40,10 @@ public class ShelterServiceTest {
     }
 
     @Test
-    void saveNewShelter_shouldReturnTierheimDellbrück_WhenCalledWithDto() {
+    void saveNewShelter_shouldReturnTierheimDellbruck_WhenCalledWithDto() {
         //GIVEN
-        ShelterWOIdAndCoordinates newShelter = new ShelterWOIdAndCoordinates("Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123");
-        Shelter expected = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbrück", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
+        ShelterWOIdAndCoordinates newShelter = new ShelterWOIdAndCoordinates("Tierheim Dellbruck", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbruck", "123");
+        Shelter expected = new Shelter("1", "Tierheim Dellbruck", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "tierheimDellbruck", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
 
         when(mockIdService.generateId()).thenReturn("1");
         when(mockCoordianteService.transformLocationToCoordinates("51069")).thenReturn(new Coordinates(50.96214243254786, 7.086788534833288));
@@ -61,7 +61,7 @@ public class ShelterServiceTest {
     @Test
     void getShelterByUsername_shouldReturnShelter_WhenCalledWithUsername() {
         //GIVEN
-        Shelter expected = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "TH_DellB", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
+        Shelter expected = new Shelter("1", "Tierheim Dellbruck", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "TH_DellB", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
         String username = "TH_DELLB";
 
         when(mockrepo.findShelterByUserName(username)).thenReturn(Optional.of(expected));
