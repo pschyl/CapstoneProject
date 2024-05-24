@@ -12,6 +12,7 @@ public class MessageWOIdAndTime {
 
     private final String addressee;
     private final String recipient;
+    private final String header;
     private final String message;
 
 }

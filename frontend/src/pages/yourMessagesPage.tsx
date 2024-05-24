@@ -35,7 +35,7 @@ export default function YourMessagesPage(props: MessagesProps) {
             Nachrichten für {username}:
             <div>
                 {messageList.map((message:Message) =>(
-                    <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient} message={message.message} timestamp={message.timestamp} key={message.id}/>
+                    <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient} header={message.header} message={message.message} timestamp={message.timestamp} key={message.id}/>
                 ))}
             </div>
         </div>

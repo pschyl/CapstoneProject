@@ -30,6 +30,7 @@ public class MessageServiceTest {
                 "Ernie",
                 "Bert",
                 "Test",
+                "Test Test Test",
                 LocalDateTime.of(2077, Month.APRIL, 16, 12, 2, 3, 20000)
         );
 
@@ -48,12 +49,13 @@ public class MessageServiceTest {
     @Test
     void saveNewMessage_shouldReturnTestMessage_whenCalledWithDto() {
         //GIVEN
-        MessageWOIdAndTime newMessage = new MessageWOIdAndTime("Ernie", "Bert", "test");
+        MessageWOIdAndTime newMessage = new MessageWOIdAndTime("Ernie", "Bert", "test","Test Test Test");
         Message expected = new Message(
                 "1",
                 "Ernie",
                 "Bert",
                 "test",
+                "Test Test Test",
                 LocalDateTime.of(2077, Month.APRIL, 16, 12, 2, 3, 20000)
         );
 

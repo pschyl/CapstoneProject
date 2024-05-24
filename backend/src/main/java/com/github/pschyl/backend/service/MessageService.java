@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -27,6 +28,7 @@ public class MessageService {
                 idService.generateId(),
                 newMessage.getAddressee(),
                 newMessage.getRecipient(),
+                newMessage.getHeader(),
                 newMessage.getMessage(),
                 currentTimeService.getCurrentTime()
         );
@@ -35,6 +37,10 @@ public class MessageService {
     }
 
     public List<Message> getAllMessagesWithUsername(String username) {
-        return repo.findAll().stream().filter(message -> message.getAddressee().contains(username) || message.getRecipient().contains(username)).toList();
+        return repo.findAll().stream()
+                .filter(message -> message.getAddressee().contains(username) || message.getRecipient().contains(username))
+                .sorted(Comparator.comparing(Message::getTimestamp).reversed())
+                .toList();
+
     }
 }
