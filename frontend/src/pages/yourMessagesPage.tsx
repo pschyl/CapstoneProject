@@ -4,8 +4,7 @@ import {useEffect, useState} from "react";
 import {Message} from "../model/Message.ts";
 import axios from "axios";
 import MessageCard from "../components/MessageCard.tsx";
-import catLogo from "../assets/cat.blue.svg";
-import dogLogo from "../assets/dog.blue.svg";
+import './yourMessagesPage.css'
 
 type MessagesProps = {
     shelter:Shelter
@@ -17,6 +16,7 @@ export default function YourMessagesPage(props: MessagesProps) {
     const [username, setUsername] = useState<string>(props.user.userName + props.shelter.userName)
     const [messageList, setMessageList] = useState<Message[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([true,false])
+    const [refreshed, setRefreshed] = useState<boolean>(false)
 
 
     function fetchMessages() {
@@ -33,9 +33,18 @@ export default function YourMessagesPage(props: MessagesProps) {
         }
     }
 
+    function refreshPage() {
+        if (refreshed) {
+            setRefreshed(false)
+        } else {
+            setRefreshed(true)
+        }
+    }
+
+
     useEffect(() => {
         fetchMessages()
-    }, [])
+    }, [refreshed])
 
 
     return <>
@@ -58,12 +67,12 @@ export default function YourMessagesPage(props: MessagesProps) {
                 <label htmlFor={"sent"}>Gesendet</label>
             </div>
             <div>
-                <button>Refresh</button>
+                <button onClick={refreshPage}>🔄</button>
             </div>
         </div>
-        <div>
+        <div >
             Nachrichten für {username}:
-            <div>
+            <div className={"message_card_container"}>
                 {isChecked[0] ? messageList
                         .filter((message) => message.recipient.includes(username))
                         .map((message:Message) =>(
