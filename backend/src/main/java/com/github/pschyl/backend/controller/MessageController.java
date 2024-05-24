@@ -21,9 +21,16 @@ public class MessageController {
         return service.getAllMessages();
     }
 
+    @GetMapping("/{username}")
+    public List<Message> getAllMessagesWithUsername(@PathVariable String username) {
+        return service.getAllMessagesWithUsername(username);
+    }
+
     @PostMapping
     public Message saveNewMessage(@RequestBody MessageWOIdAndTime newMessage) {
         return service.saveNewMessage(newMessage);
     }
+
+
 
 }

@@ -1,8 +1,9 @@
 import {User} from "../model/User.ts";
 import {Shelter} from "../model/Shelter.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Message} from "../model/Message.ts";
 import axios from "axios";
+import MessageCard from "../components/MessageCard.tsx";
 
 type MessagesProps = {
     shelter:Shelter
@@ -20,8 +21,23 @@ export default function YourMessagesPage(props: MessagesProps) {
             .catch(e => console.log(e.message))
     }
 
+    useEffect(() => {
+        fetchMessages()
+    }, [])
+
+
     return <>
-        Nachrichten für {username}:
-    your messages
+        <div>
+            <button>Empfangen</button>
+            <button>Gesendet</button>
+        </div>
+        <div>
+            Nachrichten für {username}:
+            <div>
+                {messageList.map((message:Message) =>(
+                    <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient} message={message.message} timestamp={message.timestamp} key={message.id}/>
+                ))}
+            </div>
+        </div>
     </>
 }

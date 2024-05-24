@@ -1,7 +1,7 @@
 import {Message} from "../model/Message.ts";
 
 export default function MessageCard(props: Readonly<Message>) {
-    return <div>
+    return <div className={"message_card"}>
         <div>
             {props.addressee} an {props.recipient}
         </div>

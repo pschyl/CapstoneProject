@@ -33,4 +33,8 @@ public class MessageService {
         repo.save(message);
         return message;
     }
+
+    public List<Message> getAllMessagesWithUsername(String username) {
+        return repo.findAll().stream().filter(message -> message.getAddressee().contains(username) || message.getRecipient().contains(username)).toList();
+    }
 }
