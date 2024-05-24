@@ -15,6 +15,7 @@ public class MessageService {
 
     private final MessageRepo repo;
     private final IdService idService;
+    private final CurrentTimeService currentTimeService;
 
 
     public List<Message> getAllMessages() {
@@ -27,7 +28,7 @@ public class MessageService {
                 newMessage.getAddressee(),
                 newMessage.getRecipient(),
                 newMessage.getMessage(),
-                LocalDateTime.now()
+                currentTimeService.getCurrentTime()
         );
         repo.save(message);
         return message;
