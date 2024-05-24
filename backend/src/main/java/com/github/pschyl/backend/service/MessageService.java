@@ -1,10 +1,12 @@
 package com.github.pschyl.backend.service;
 
+import com.github.pschyl.backend.dto.MessageWOIdAndTime;
 import com.github.pschyl.backend.model.Message;
 import com.github.pschyl.backend.repository.MessageRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,5 +19,17 @@ public class MessageService {
 
     public List<Message> getAllMessages() {
         return repo.findAll();
+    }
+
+    public Message saveNewMessage(MessageWOIdAndTime newMessage) {
+        Message message = new Message(
+                idService.generateId(),
+                newMessage.getAddressee(),
+                newMessage.getRecipient(),
+                newMessage.getMessage(),
+                LocalDateTime.now()
+        );
+        repo.save(message);
+        return message;
     }
 }
