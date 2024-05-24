@@ -5,10 +5,7 @@ import com.github.pschyl.backend.model.Message;
 import com.github.pschyl.backend.repository.MessageRepo;
 import com.github.pschyl.backend.service.MessageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +22,7 @@ public class MessageController {
     }
 
     @PostMapping
-    public Message saveNewMessage(MessageWOIdAndTime newMessage) {
+    public Message saveNewMessage(@RequestBody MessageWOIdAndTime newMessage) {
         return service.saveNewMessage(newMessage);
     }
 

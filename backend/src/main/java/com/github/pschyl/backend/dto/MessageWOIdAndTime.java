@@ -1,5 +1,6 @@
 package com.github.pschyl.backend.dto;
 
+import com.github.pschyl.backend.model.Pet;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
