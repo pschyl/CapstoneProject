@@ -6,9 +6,7 @@ import com.github.pschyl.backend.model.Pet;
 import com.github.pschyl.backend.repository.PetRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

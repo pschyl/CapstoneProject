@@ -60,7 +60,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
                     <th>{props.age}</th>
                 </tr>
                 <tr>
-                    <th>Kastriert?</th>
+                    <th>Kastriert</th>
                     <th>{props.castrated}</th>
                 </tr>
                 <tr>

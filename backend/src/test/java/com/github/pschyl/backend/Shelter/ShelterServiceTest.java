@@ -11,6 +11,7 @@ import com.github.pschyl.backend.service.IdService;
 import com.github.pschyl.backend.service.ShelterService;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -22,6 +23,8 @@ public class ShelterServiceTest {
     CoordinateService mockCoordianteService = mock(CoordinateService.class);
     HashService mockHashService = mock(HashService.class);
     ShelterService shelterService = new ShelterService(mockrepo, mockIdService, mockCoordianteService, mockHashService);
+
+
     @Test
     void getAllShelter_shouldReturnListWithElementTierheimDellbrück_WhenCalled() {
         //GIVEN
@@ -53,6 +56,21 @@ public class ShelterServiceTest {
         verify(mockCoordianteService).transformLocationToCoordinates("51069");
         verify(mockrepo).save(expected);
         assertEquals(expected, actual);
+    }
 
+    @Test
+    void getShelterByUsername_shouldReturnShelter_WhenCalledWithUsername() {
+        //GIVEN
+        Shelter expected = new Shelter("1", "Tierheim Dellbrück", "Krasse Straße 3", "51069", "Berlin", "tierheim@yahoo.de", "TH_DellB", "123", new Coordinates(50.96214243254786, 7.086788534833288), Role.SHELTER);
+        String username = "TH_DELLB";
+
+        when(mockrepo.findShelterByUserName(username)).thenReturn(Optional.of(expected));
+
+        //WHEN
+        Shelter actual = shelterService.getShelterByUsername(username);
+
+        //THEN
+        verify(mockrepo).findShelterByUserName(username);
+        assertEquals(expected, actual);
     }
 }
