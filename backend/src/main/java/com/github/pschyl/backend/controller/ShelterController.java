@@ -6,6 +6,7 @@ import com.github.pschyl.backend.model.Shelter;
 import com.github.pschyl.backend.service.PetService;
 import com.github.pschyl.backend.service.ShelterService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,4 +27,10 @@ public class ShelterController {
     public Shelter saveNewShelter(@RequestBody ShelterWOIdAndCoordinates newShelter) {
         return service.saveNewShelter(newShelter);
     }
+
+    @GetMapping("/{username}")
+    public Shelter getShelterByUsername(@PathVariable String username) {
+        return service.getShelterByUsername(username);
+    }
+
 }

@@ -10,7 +10,6 @@ export function ManagePetCard(props:Readonly<Pet>) {
 
     function handleInputChange(event:ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         setPetToEdit({...petToEdit, [event.target.name]: event.target.value})
-        console.log(petToEdit)
     }
 
 
@@ -39,7 +38,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
 
 
     return <div id={"manage_pet_card" + props.id} className={"manage_pet_card_container"}>
-        <div className={"manage_image_container"}><img src={props.images[0]}/></div>
+        <div className={"manage_image_container"}><img src={props.images[0]} alt={"Image of Pet"}/></div>
         <div className={"manage_table_container"}>
             <table>
                 {!isEdited ?
@@ -61,7 +60,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
                     <th>{props.age}</th>
                 </tr>
                 <tr>
-                    <th>Kastriert?</th>
+                    <th>Kastriert</th>
                     <th>{props.castrated}</th>
                 </tr>
                 <tr>

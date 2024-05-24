@@ -6,22 +6,28 @@ import searchLogo from "../assets/search-icon.webp";
 import './placePetPage.css'
 import {Shelter} from "../model/Shelter.ts";
 
-export default function PlacePetPage() {
+type placePetProps = {
+    shelter:Shelter
+}
 
-    const shelter:Shelter = {id:"1", name:"Tierheim Berlin", postalCode:"50678"}
+export default function PlacePetPage(props:placePetProps) {
+
 
     const [petList, setPetList] = useState<Pet[]>([])
     const [isAdded, setIsAdded] = useState<boolean>(false)
-    const [newPet, setNewPet] = useState<Pet>({id:"", name:"", type:"", species:"", gender:"", castrated:"", age:"", description:"", images: [], shelter: shelter})
+    const [newPet, setNewPet] = useState<Pet>({id:"", name:"", type:"", species:"", gender:"", castrated:"", age:"", description:"", images: [], shelter: props.shelter})
     const [imageToSave, setImageToSave] = useState<string>("")
     const [searchInput, setSearchInput] = useState<string>("")
+
 
     function fetchPlacedPets() {
         axios.get("/api/pets")
             .then((response) => {setPetList(
-                response.data.filter((pet: Pet) => (pet.shelter.name === shelter.name)))})
+                response.data.filter((pet: Pet) => (pet.shelter.userName === props.shelter.userName)))})
             .catch((error) => console.log(error.message))
     }
+
+
 
     function placeNewPet() {
         if (!isAdded) {
@@ -42,7 +48,6 @@ export default function PlacePetPage() {
 
     function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
         setSearchInput(event.target.value)
-        console.log(searchInput)
     }
 
     function addImageToNewPet() {
@@ -53,7 +58,7 @@ export default function PlacePetPage() {
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         axios.post("/api/pets", newPet)
-            .then(() => {setNewPet({id:"", name:"", type:"", species:"", gender:"", castrated:"", age:"", description:"", images: [], shelter: shelter})})
+            .then(() => {setNewPet({id:"", name:"", type:"", species:"", gender:"", castrated:"", age:"", description:"", images: [], shelter: props.shelter})})
             .catch(e => {console.log(e.message)})
         setIsAdded(false)
     }
@@ -176,7 +181,7 @@ export default function PlacePetPage() {
         </form>
         }
         <div className={"card_container"}>
-            {petList.filter((pet: Pet) => pet.name.toLowerCase().includes(searchInput))
+            {petList.filter((pet: Pet) => pet.name.toLowerCase().includes(searchInput.toLowerCase()))
                 .map((pet: Pet) => (
                 <ManagePetCard id={pet.id} name={pet.name} type={pet.type} gender={pet.gender} age={pet.age} castrated={pet.castrated} description={pet.description} species={pet.species} shelter={pet.shelter}
                                images={pet.images} key={pet.id}/>
