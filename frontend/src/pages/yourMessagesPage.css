@@ -13,9 +13,39 @@
     align-items: center;
 }
 
+.message_option_container input {
+    margin-left: 10px;
+}
+
+.messages_filter {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.messages_filter form {
+    display: flex;
+    padding: 5px 20px 5px 10px;
+    border: 1px solid #748E8F;
+    border-radius: 20px;
+    box-shadow: 1px 1px #748E8F;
+    gap: 10px;
+    align-items: center;
+}
+
+.messages_filter input {
+    border: none;
+}
+
 .new_message_container {
     position: absolute;
     margin-left: 29%;
+}
+
+.message_options {
+    display: flex;
+    flex-flow: row;
 }
 
 #refresh {
@@ -24,7 +54,22 @@
     background-color: white;
 }
 
+#add {
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+}
+
+#add img {
+    width: 30px;
+}
+
 #refresh:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+#add:hover {
     cursor: pointer;
     background-color: whitesmoke;
 }

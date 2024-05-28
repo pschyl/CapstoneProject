@@ -1,6 +1,6 @@
 .new_message_card {
     border: 1px solid #748E8F;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     flex-flow: column nowrap;
     padding: 25px;
