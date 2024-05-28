@@ -1,0 +1,26 @@
+.new_message_card {
+    border: 1px solid #748E8F;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 25px;
+    background-color: white;
+}
+
+.new_message_form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.close_popup {
+    background-color: white;
+    border: none;
+    position: absolute;
+    margin-left: 455px;
+    margin-top: -20px;
+}
+
+.close_popup:hover {
+    scale: 1.1;
+    cursor: pointer;
+}

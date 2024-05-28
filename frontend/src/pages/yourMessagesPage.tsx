@@ -6,6 +6,7 @@ import axios from "axios";
 import MessageCard from "../components/MessageCard.tsx";
 import './yourMessagesPage.css'
 import refresh from '../assets/refresh.png'
+import {NewMessage} from "../components/NewMessage.tsx";
 
 type MessagesProps = {
     shelter:Shelter
@@ -18,7 +19,7 @@ export default function YourMessagesPage(props: MessagesProps) {
     const [messageList, setMessageList] = useState<Message[]>([])
     const [isChecked, setIsChecked] = useState<boolean[]>([true,false])
     const [refreshed, setRefreshed] = useState<boolean>(false)
-
+    const [popupIsOpen, setPopupIsOpen] = useState<boolean>(false)
 
     function fetchMessages() {
         axios.get("/api/messages/" + username)
@@ -32,6 +33,10 @@ export default function YourMessagesPage(props: MessagesProps) {
         } else {
             setIsChecked([false,true])
         }
+    }
+
+    function handlePopup() {
+        setPopupIsOpen(true)
     }
 
     function refreshPage() {
@@ -71,10 +76,12 @@ export default function YourMessagesPage(props: MessagesProps) {
                 <input/>
             </div>
             <div>
-                <button>+</button>
+                <button onClick={handlePopup}>+</button>
                 <button id={"refresh"} onClick={refreshPage}><img src={refresh}/></button>
             </div>
         </div>
+
+        {popupIsOpen && <div className={"new_message_container"}><NewMessage setPopup={setPopupIsOpen}/></div>}
 
         <div className={"message_card_container"}>
             {isChecked[0] ? messageList

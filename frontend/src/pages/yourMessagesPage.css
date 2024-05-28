@@ -5,11 +5,17 @@
     gap: 10px;
 }
 
+
 .message_option_container {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+}
+
+.new_message_container {
+    position: absolute;
+    margin-left: 29%;
 }
 
 #refresh {
