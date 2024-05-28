@@ -5,6 +5,7 @@ import {Message} from "../model/Message.ts";
 import axios from "axios";
 import MessageCard from "../components/MessageCard.tsx";
 import './yourMessagesPage.css'
+import refresh from '../assets/refresh.png'
 
 type MessagesProps = {
     shelter:Shelter
@@ -48,7 +49,7 @@ export default function YourMessagesPage(props: MessagesProps) {
 
 
     return <>
-        <div>
+        <div className={"message_option_container"}>
             <div>
                 <input
                     type={"checkbox"}
@@ -67,23 +68,30 @@ export default function YourMessagesPage(props: MessagesProps) {
                 <label htmlFor={"sent"}>Gesendet</label>
             </div>
             <div>
-                <button onClick={refreshPage}>🔄</button>
+                <input/>
+            </div>
+            <div>
+                <button>+</button>
+                <button id={"refresh"} onClick={refreshPage}><img src={refresh}/></button>
             </div>
         </div>
-        <div >
-            Nachrichten für {username}:
-            <div className={"message_card_container"}>
-                {isChecked[0] ? messageList
-                        .filter((message) => message.recipient.includes(username))
-                        .map((message:Message) =>(
-                    <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient} header={message.header} message={message.message} timestamp={message.timestamp} key={message.id}/>
-                ))
+
+        <div className={"message_card_container"}>
+            {isChecked[0] ? messageList
+                    .filter((message) => message.recipient.includes(username))
+                    .map((message: Message) => (
+                        <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient}
+                                     header={message.header} message={message.message} timestamp={message.timestamp}
+                                     key={message.id}/>
+                    ))
                 : messageList
-                        .filter((message) => message.addressee.includes(username))
-                        .map((message:Message) =>(
-                            <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient} header={message.header} message={message.message} timestamp={message.timestamp} key={message.id}/>
-                        ))}
-            </div>
+                    .filter((message) => message.addressee.includes(username))
+                    .map((message: Message) => (
+                        <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient}
+                                     header={message.header} message={message.message} timestamp={message.timestamp}
+                                     key={message.id}/>
+                    ))}
         </div>
+
     </>
 }
