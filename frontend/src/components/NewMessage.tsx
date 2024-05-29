@@ -52,7 +52,9 @@ export function NewMessage(props: NewMessageProps) {
             <input onChange={handleInputChange} name={"recipient"} placeholder={"Empfänger"} value={newMessage.recipient}/>
             <input onChange={handleInputChange} placeholder={"Betreff"} name={"header"} value={newMessage.header}/>
             <textarea onChange={handleInputChange} placeholder={"Max. 440 Zeichen"} name={"message"} rows={7} cols={55} maxLength={440} value={newMessage.message}></textarea>
-            <button type={"submit"}>Abschicken</button>
+            <div id={"button_container"}>
+                <button type={"submit"}>Abschicken</button>
+            </div>
         </form>
         <button className={"close_popup"} onClick={() => props.setPopup(false)}>❌</button>
     </div>
