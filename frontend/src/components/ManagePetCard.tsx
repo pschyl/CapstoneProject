@@ -73,7 +73,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
                 </tr>
                 </tbody>
                     :
-                    <tbody>
+                    <tbody id={"edit_table"}>
                     <tr>
                         <th>Name</th>
                         <th><input type="text" value={petToEdit.name} name={"name"} onChange={handleInputChange}/></th>
@@ -111,7 +111,7 @@ export function ManagePetCard(props:Readonly<Pet>) {
                         </th>
                     </tr>
                     <tr>
-                        <th>Kastriert?</th>
+                        <th>Kastriert</th>
                         <th>
                             <select value={petToEdit.castrated} name={"castrated"} onChange={handleInputChange}>
                                 <option value={""}>-</option>

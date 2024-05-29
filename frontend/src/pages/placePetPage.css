@@ -25,53 +25,71 @@
 }
 
 .table_container {
-    margin-top: 15px;
     border-radius: 10px;
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
     font-size: small;
 }
 
+.table_container_left {
+    width: 50%;
+}
+
+.table_container_right {
+    width: 50%;
+}
+
 .table_container table {
     display: flex;
     flex-flow: nowrap column;
-    padding: 10px;
-    width: 50%;
+    padding: 5px;
     text-align: left;
 }
 
-#new_pet_table tr,th {
-    border: none;
-}
 
-.table_container_left {
-    width: 50%;
-    border: 1px solid red;
-}
-
-.table_container_left table {
+.table_container tr {
     display: flex;
-    flex-flow: row;
-    width: 100%;
-    border: 1px solid green;
-}
-
-.table_container tr, th {
     font-size: small;
     font-style: normal;
     font-weight: 100;
-    padding: 5px;
+    padding: 2px;
 }
 
 .table_container th {
-    width: 100%;
+    display: flex;
+    width: 24%;
+    border: none;
 }
 
-.table_container .first_col {
+
+.first_col {
     font-weight: bold;
     font-style: normal;
     font-size: small;
 }
+
+.table_container_right input {
+    height: 20px;
+}
+.table_container_right button {
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 12px;
+    padding: 0.5px;
+}
+.table_container_right button:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+.table_container_right img {
+    height: 20px;
+}
+
 
 .add_search_container form {
     display: flex;

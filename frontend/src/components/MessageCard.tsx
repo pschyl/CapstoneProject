@@ -3,7 +3,6 @@ import "./MessageCard.css"
 import {useState} from "react";
 import arrowdown from '../assets/arrowdown.png'
 import arrowup from '../assets/arrowup.png'
-import reply from '../assets/reply.png'
 
 export default function MessageCard(props: Readonly<Message>) {
 

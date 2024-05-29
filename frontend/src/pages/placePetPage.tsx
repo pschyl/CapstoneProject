@@ -5,6 +5,7 @@ import {ManagePetCard} from "../components/ManagePetCard.tsx";
 import searchLogo from "../assets/search-icon.webp";
 import './placePetPage.css'
 import {Shelter} from "../model/Shelter.ts";
+import add_icon from '../assets/add2.png'
 
 type placePetProps = {
     shelter:Shelter
@@ -96,26 +97,8 @@ export default function PlacePetPage(props:placePetProps) {
                         </tr>
                         </tbody>
                     </table>
-                    <table id={"new_pet_table"}>
+                    <table>
                         <tbody>
-                        <tr>
-                            <th className={"first_col"}>Sucht nach</th>
-                            <th>
-                                <input name={"type"} id={"placetype_family"} type={"radio"} onChange={handleInputChange}
-                                       value={"Familienmitglied"}/>
-                                <label htmlFor={"placetype_family"}>Familienmitglied</label>
-                            </th>
-                            <th>
-                                <input name={"type"} id={"placetype_temp"} type={"radio"} onChange={handleInputChange}
-                                       value={"Befristete Pflege"}/>
-                                <label htmlFor={"placetype_temp"}>Befristeter Pflege</label>
-                            </th>
-                            <th>
-                                <input name={"type"} id={"placetype_walk"} type={"radio"} onChange={handleInputChange}
-                                       value={"Spazierbegleitung"}/>
-                                <label htmlFor={"placetype_walk"}>Spazierbegleitung</label>
-                            </th>
-                        </tr>
                         <tr>
                             <th className={"first_col"}>Art</th>
                             <th>
@@ -128,6 +111,7 @@ export default function PlacePetPage(props:placePetProps) {
                                        value={"Hund"}/>
                                 <label htmlFor={"species_dog"}>Hund</label>
                             </th>
+
                         </tr>
                         <tr>
                             <th className={"first_col"}>Geschlecht</th>
@@ -155,6 +139,10 @@ export default function PlacePetPage(props:placePetProps) {
                                 <label htmlFor={"castrated_no"}>Nein</label>
                             </th>
                         </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
                         <tr>
                             <th className={"first_col"}>Alter</th>
                             <th>
@@ -173,29 +161,49 @@ export default function PlacePetPage(props:placePetProps) {
                                 <label htmlFor={"age_old"}>Alt</label>
                             </th>
                         </tr>
+                        <tr>
+                            <th className={"first_col"}>Sucht nach</th>
+                            <th>
+                                <input name={"type"} id={"placetype_family"} type={"radio"} onChange={handleInputChange}
+                                       value={"Familienmitglied"}/>
+                                <label htmlFor={"placetype_family"}>Familienmitglied</label>
+                            </th>
+                            <th>
+                                <input name={"type"} id={"placetype_temp"} type={"radio"} onChange={handleInputChange}
+                                       value={"Befristete Pflege"}/>
+                                <label htmlFor={"placetype_temp"}>Befristeter Pflege</label>
+                            </th>
+                            <th>
+                                <input name={"type"} id={"placetype_walk"} type={"radio"} onChange={handleInputChange}
+                                       value={"Spazierbegleitung"}/>
+                                <label htmlFor={"placetype_walk"}>Spazierbegleitung</label>
+                            </th>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
-                <table>
-                    <tbody>
-                    <tr>
-                        <th><label className={"first_col"} htmlFor={"input_description"}>Beschreibung</label></th>
-                        <th>
+                <div className={"table_container_right"}>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th className={"first_col"}><label htmlFor={"input_description"}>Beschreibung</label></th>
+                            <th>
                             <textarea id={"input_description"} placeholder={"Max 200 Zeichen"} name={"description"}
                                       rows={4} cols={55} maxLength={200} onChange={handleInputChange}
                                       value={newPet.description}></textarea>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th className={"first_col"}>Fotos</th>
-                        <th>
-                            <input type={"text"} placeholder={"Dateipfad/URL"} name={"images"} value={imageToSave}
-                                   onChange={handleImageChange}/>
-                            <button type={"button"} onClick={addImageToNewPet}>Datei hinzufügen</button>
-                        </th>
-                    </tr>
-                    </tbody>
-                </table>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th className={"first_col"}>Fotos</th>
+                            <th>
+                                <input type={"text"} placeholder={"Dateipfad/URL"} name={"images"} value={imageToSave}
+                                       onChange={handleImageChange}/>
+                                <button type={"button"} onClick={addImageToNewPet}><img src={add_icon}/></button>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div id={"place_pet_button_container"}>
                 <button>Zuhause suchen</button>
