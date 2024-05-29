@@ -28,7 +28,7 @@
     margin-top: 15px;
     border-radius: 10px;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     font-size: small;
 }
 
@@ -40,16 +40,34 @@
     text-align: left;
 }
 
+#new_pet_table tr,th {
+    border: none;
+}
 
-.table_container th, td {
+.table_container_left {
+    width: 50%;
+    border: 1px solid red;
+}
+
+.table_container_left table {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    border: 1px solid green;
+}
+
+.table_container tr, th {
     font-size: small;
     font-style: normal;
     font-weight: 100;
     padding: 5px;
 }
 
+.table_container th {
+    width: 100%;
+}
+
 .table_container .first_col {
-    width: 15%;
     font-weight: bold;
     font-style: normal;
     font-size: small;

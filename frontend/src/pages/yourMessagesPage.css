@@ -39,7 +39,7 @@
 }
 
 .new_message_container {
-    position: absolute;
+    position: fixed;
     margin-left: 29%;
 }
 

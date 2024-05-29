@@ -7,6 +7,8 @@ import axios from "axios";
 type NewMessageProps = {
     setPopup: (Popup: boolean) => void
     username: string
+    recipient: string
+    header: string
 }
 
 export function NewMessage(props: NewMessageProps) {
@@ -14,8 +16,8 @@ export function NewMessage(props: NewMessageProps) {
     const [newMessage, setNewMessage] = useState<Message>({
         id: "",
         addressee: props.username,
-        recipient: "",
-        header: "",
+        recipient: props.recipient,
+        header: props.header,
         message: "",
         timestamp: "",
     })

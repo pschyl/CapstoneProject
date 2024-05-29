@@ -113,7 +113,7 @@ function App() {
         <main>
             <Routes>
                 <Route path={"/"} element={<FindPetPage/>}/>
-                <Route path={"/find/:id"} element={<FindPetDetailPage/>}/>
+                <Route path={"/find/:id"} element={<FindPetDetailPage user={loggedInUser} shelter={loggedInShelter}/>}/>
                 <Route path={"/registration"} element={<RegistrationPage/>}/>
                 <Route path={"/login"} element={<LoginPage setUser={setLoggedInUser} setShelter={setLoggedInShelter}/>}/>
                 <Route path={"/place"} element={<PlacePetPage shelter={loggedInShelter}/>}/>

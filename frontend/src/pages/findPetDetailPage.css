@@ -1,13 +1,26 @@
 .detail_container {
     display: flex;
     flex-flow: row nowrap;
+    gap: 50px;
 }
 
-.contact_container {
+.info_container {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
+    flex-flow: column;
+    justify-content: space-around;
+    width: 60%;
 }
+
+.detail_table {
+    text-align: left;
+}
+
+.detail_table tr,th {
+    border-bottom: 1px solid #ddd;
+    width: 50%;
+    font-weight: normal;
+}
+
 
 .detail_image_container {
     width: 500px;
@@ -24,6 +37,13 @@
     min-height: 100%;
 }
 
-ul {
-    list-style-type: none;
+#send_message {
+    margin-right: 10px;
+    background-color: white;
+    border: none;
+    scale: 1.5;
+}
+
+#send_message:hover {
+    cursor: pointer;
 }

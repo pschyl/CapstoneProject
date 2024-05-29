@@ -1,6 +1,6 @@
 import {User} from "../model/User.ts";
 import {Shelter} from "../model/Shelter.ts";
-import {useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import {Message} from "../model/Message.ts";
 import axios from "axios";
 import MessageCard from "../components/MessageCard.tsx";
@@ -22,6 +22,7 @@ export default function YourMessagesPage(props: MessagesProps) {
     const [isChecked, setIsChecked] = useState<boolean[]>([true,false])
     const [refreshed, setRefreshed] = useState<boolean>(false)
     const [popupIsOpen, setPopupIsOpen] = useState<boolean>(false)
+    const [searchInput, setSearchInput] = useState<string>("")
 
     function fetchMessages() {
         axios.get("/api/messages/" + username)
@@ -35,6 +36,10 @@ export default function YourMessagesPage(props: MessagesProps) {
         } else {
             setIsChecked([false,true])
         }
+    }
+
+    function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
+        setSearchInput(event.target.value)
     }
 
 
@@ -74,7 +79,7 @@ export default function YourMessagesPage(props: MessagesProps) {
                     <label htmlFor={"sent"}>Gesendet</label>
                 </div>
                 <form>
-                    <input type={"text"} placeholder={"Suche"}/>
+                    <input type={"text"} onChange={handleSearchChange} value={searchInput} placeholder={"Suche"}/>
                     <img id={"search_logo"} src={searchLogo}/>
                 </form>
             </div>
@@ -84,11 +89,14 @@ export default function YourMessagesPage(props: MessagesProps) {
         </div>
 
         {popupIsOpen && <div className={"new_message_container"}><NewMessage setPopup={setPopupIsOpen}
-                                                                             username={props.shelter.userName + props.user.userName}/>
+                                                                             username={props.shelter.userName + props.user.userName} header={""} recipient={""}/>
         </div>}
 
         <div className={"message_card_container"}>
             {isChecked[0] ? messageList
+                    .filter((message) => message.header.toLowerCase().includes(searchInput.toLowerCase())
+                        || message.message.toLowerCase().includes(searchInput.toLowerCase())
+                        || message.addressee.toLowerCase().includes(searchInput.toLowerCase()))
                     .filter((message) => message.recipient.includes(username))
                     .map((message: Message) => (
                         <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient}
@@ -96,6 +104,9 @@ export default function YourMessagesPage(props: MessagesProps) {
                                      key={message.id}/>
                     ))
                 : messageList
+                    .filter((message) => message.header.toLowerCase().includes(searchInput.toLowerCase())
+                        || message.message.toLowerCase().includes(searchInput.toLowerCase())
+                        || message.addressee.toLowerCase().includes(searchInput.toLowerCase()))
                     .filter((message) => message.addressee.includes(username))
                     .map((message: Message) => (
                         <MessageCard id={message.id} addressee={message.addressee} recipient={message.recipient}
