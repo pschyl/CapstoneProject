@@ -100,7 +100,7 @@ function App() {
                         {(loggedInUser.userName !== "" || loggedInShelter.userName !== "") &&
                             <div className={"dropdown-content"}>
                                 <a>Profil</a>
-                                <Link to={"/messages"}>Nachrichten</Link>
+                                <Link className={"link_styles"} to={"/messages"}>Nachrichten</Link>
                                 <a onClick={logout}>Logout</a>
                             </div>
                         }
