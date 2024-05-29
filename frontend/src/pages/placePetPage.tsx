@@ -1,4 +1,4 @@
-import {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent,useEffect, useState} from "react";
 import {Pet} from "../model/Pet.ts";
 import axios from "axios";
 import {ManagePetCard} from "../components/ManagePetCard.tsx";
@@ -56,6 +56,10 @@ export default function PlacePetPage(props:placePetProps) {
         setImageToSave("")
     }
 
+    function deleteImage(index: number) {
+        newPet.images.splice(index,1)
+    }
+
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         axios.post("/api/pets", newPet)
@@ -63,6 +67,7 @@ export default function PlacePetPage(props:placePetProps) {
             .catch(e => {console.log(e.message)})
         setIsAdded(false)
     }
+
 
 
     useEffect(() => {
@@ -198,11 +203,17 @@ export default function PlacePetPage(props:placePetProps) {
                             <th>
                                 <input type={"text"} placeholder={"Dateipfad/URL"} name={"images"} value={imageToSave}
                                        onChange={handleImageChange}/>
-                                <button type={"button"} onClick={addImageToNewPet}><img src={add_icon}/></button>
+                                <button id={"add_image"} type={"button"} onClick={addImageToNewPet}><img src={add_icon}/></button>
                             </th>
                         </tr>
                         </tbody>
                     </table>
+                    <div id={"uploaded_images_container"}>
+                        {newPet.images.length > 0 &&
+                            newPet.images.map((image) => <div className={"uploaded_image"}>{image}
+                                <button type={"button"} onClick={() => deleteImage(newPet.images.indexOf(image))}>❌</button>
+                            </div>)}
+                    </div>
                 </div>
             </div>
             <div id={"place_pet_button_container"}>

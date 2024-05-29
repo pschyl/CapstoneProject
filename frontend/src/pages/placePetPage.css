@@ -58,7 +58,7 @@
 
 .table_container th {
     display: flex;
-    width: 24%;
+    width: 20%;
     border: none;
 }
 
@@ -72,7 +72,7 @@
 .table_container_right input {
     height: 20px;
 }
-.table_container_right button {
+#add_image {
     margin-left: 5px;
     display: flex;
     justify-content: center;
@@ -82,7 +82,7 @@
     border-radius: 12px;
     padding: 0.5px;
 }
-.table_container_right button:hover {
+#add_image:hover {
     background-color: lightgreen;
     cursor: pointer;
 }
@@ -138,7 +138,7 @@ textarea {
 
 #place_pet_button_container button:hover {
     cursor: pointer;
-    background-color: forestgreen;
+    background-color: lightgreen;
 }
 
 #add_pet_button_container {
@@ -155,4 +155,34 @@ textarea {
 
 .add_pet_button:hover {
     cursor: pointer;
+}
+
+#uploaded_images_container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.uploaded_image {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    padding: 3px;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+.uploaded_image:hover {
+    background-color: white;
+}
+
+.uploaded_image button {
+    background-color: whitesmoke;
+    border: none;
+}
+
+.uploaded_image button:hover {
+    cursor: pointer;
+    scale: 1.1;
 }
