@@ -1,7 +1,7 @@
 import "./loginPage.css"
 import {FormEvent, useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {User} from "../model/User.ts";
 import {Shelter} from "../model/Shelter.ts";
 
@@ -44,6 +44,7 @@ export default function LoginPage(props: LoginPageProps) {
                                value={password}/>
                     </li>
                     <button id={"submit_login"} type={"submit"}>Login</button>
+                    <div id={"to_login"}>Noch keinen Account? <Link to={"/registration"}>Hier</Link> registrieren.</div>
                 </ul>
             </form>
         </div>
