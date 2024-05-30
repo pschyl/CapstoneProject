@@ -20,9 +20,9 @@ public class PetController {
         return service.getAllPets();
     }
 
-    @GetMapping("/{location}/{radius}")
-    public List<Pet> getAllWithinRadius(@PathVariable String location, @PathVariable int radius) {
-        return service.getAllWithinRadius(location, radius);
+    @GetMapping("/{type}/{location}/{radius}")
+    public List<Pet> getAllWithinRadius(@PathVariable String type, @PathVariable String location, @PathVariable int radius) {
+        return service.getAllWithinRadius(type, location, radius);
     }
 
     @GetMapping("/{id}")

@@ -47,12 +47,13 @@ public class PetServiceTest {
         //GIVEN
         Pet newPet = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
         List<Pet> expected = Collections.emptyList();
+        String type = "Familienmitglied";
         String location = "Bonn";
         int radius = 10;
         when(mockrepo.findAll()).thenReturn(List.of(newPet));
         when(coordinateService.transformLocationToCoordinates("Bonn")).thenReturn(new Coordinates(50.73854222632312, 7.097727676912724));
         //WHEN
-        List<Pet> actual = petService.getAllWithinRadius(location, radius);
+        List<Pet> actual = petService.getAllWithinRadius(type, location, radius);
         //THEN
         verify(mockrepo).findAll();
         assertEquals(expected, actual);
@@ -63,13 +64,14 @@ public class PetServiceTest {
         //GIVEN
         Pet newPet = new Pet("1", "Django", "Familienmitglied", "cat", "Männlich", "Ja", "Alt",  "Hallo", List.of("www.example.de/picture"), shelter);
         List<Pet> expected = List.of(newPet);
+        String type = "Familienmitglied";
         String location = "Bonn";
         int radius = 50;
         when(mockrepo.findAll()).thenReturn(expected);
         when(coordinateService.transformLocationToCoordinates("Bonn")).thenReturn(new Coordinates(50.73854222632312, 7.097727676912724));
 
         //WHEN
-        List<Pet> actual = petService.getAllWithinRadius(location, radius);
+        List<Pet> actual = petService.getAllWithinRadius(type, location, radius);
         //THEN
         verify(mockrepo).findAll();
         assertEquals(expected, actual);
