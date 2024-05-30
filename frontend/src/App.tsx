@@ -90,8 +90,8 @@ function App() {
                             <Link id={"registration_link"} to={"/registration"}>Registrieren</Link>
                             :
                             <div>{loggedInUser.userName}{loggedInShelter.userName}</div>
-                    }
-                </div>
+                        }
+                    </div>
 
                     <div className={"dropdown"}>
                         <button id={"login_div"} className={"dropbtn"} onClick={toProfile}>
@@ -108,11 +108,13 @@ function App() {
 
                 </div>
             </div>
+            <div className={"color_touch_1"}></div>
+            <div className={"color_touch_2"}></div>
             <NavBar/>
         </header>
         <main>
             <Routes>
-                <Route path={"/"} element={<FindPetPage/>}/>
+            <Route path={"/"} element={<FindPetPage/>}/>
                 <Route path={"/find/:id"} element={<FindPetDetailPage user={loggedInUser} shelter={loggedInShelter}/>}/>
                 <Route path={"/registration"} element={<RegistrationPage/>}/>
                 <Route path={"/login"} element={<LoginPage setUser={setLoggedInUser} setShelter={setLoggedInShelter}/>}/>
@@ -121,6 +123,8 @@ function App() {
             </Routes>
         </main>
         <footer>
+            <div className={"color_touch_2"}></div>
+            <div className={"color_touch_1"}></div>
             Footer
         </footer>
 

@@ -16,6 +16,15 @@ footer {
     background-color: black;
 }
 
+.color_touch_1 {
+    height: 20px;
+    background-color: #393434;
+}
+.color_touch_2 {
+    height: 5px;
+    background-color: #748E8F;
+}
+
 .petCard_container {
     display: flex;
     align-items: center;
