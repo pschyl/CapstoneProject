@@ -87,35 +87,35 @@ export default function RegistrationPage() {
                         <div className={"registration_variable_container"}>
                             <li className={"registration_list_element"}>
                                 <label htmlFor={"registration_firstname"}>Vorname</label>
-                                <input id={"registration_firstname"} type={"text"} name={"firstName"}
+                                <input required={true} id={"registration_firstname"} type={"text"} name={"firstName"}
                                        onChange={handleInputChange} value={newUser.firstName}/>
                             </li>
                             <li className={"registration_list_element"}>
                                 <label htmlFor={"registration_lastname"}>Nachname</label>
-                                <input id={"registration_lastname"} type={"text"} name={"lastName"}
+                                <input required={true} id={"registration_lastname"} type={"text"} name={"lastName"}
                                        onChange={handleInputChange} value={newUser.lastName}/>
                             </li>
                         </div> :
                         <div className={"registration_variable_container"}>
                             <li className={"registration_list_element"}>
                                 <label htmlFor={"registration_sheltername"}>Name</label>
-                                <input id={"registration_sheltername"} type={"text"}
+                                <input required={true} id={"registration_sheltername"} type={"text"}
                                        placeholder={"Name des Tierheims"} name={"name"} onChange={handleInputChange}
                                        value={newShelter.name}/>
                             </li>
                             <li className={"registration_list_element"}>
                                 <label htmlFor={"registration_street"}>Straße</label>
-                                <input id={"registration_street"} type={"text"} name={"street"}
+                                <input required={true} id={"registration_street"} type={"text"} name={"street"}
                                        onChange={handleInputChange} value={newShelter.street}/>
                             </li>
                             <li className={"registration_list_element"}>
                                 <label htmlFor={"registration_postalcode"}>PLZ</label>
-                                <input id={"registration_postalcode"} type={"text"} name={"postalCode"}
+                                <input required={true} id={"registration_postalcode"} type={"text"} name={"postalCode"}
                                        onChange={handleInputChange} value={newShelter.postalCode}/>
                             </li>
                             <li className={"registration_list_element"}>
                                 <label htmlFor={"registration_city"}>Stadt</label>
-                                <input id={"registration_city"} type={"text"} name={"city"} onChange={handleInputChange}
+                                <input required={true} id={"registration_city"} type={"text"} name={"city"} onChange={handleInputChange}
                                        value={newShelter.city}/>
                             </li>
                         </div>
@@ -123,22 +123,22 @@ export default function RegistrationPage() {
 
                     <li className={"registration_list_element"}>
                         <label htmlFor={"registration_mail"}>Email</label>
-                        <input id={"registration_mail"} type={"text"} name={"mail"} onChange={handleInputChange}
+                        <input required={true} id={"registration_mail"} type={"text"} name={"mail"} onChange={handleInputChange}
                                value={newRegistration.mail}/>
                     </li>
                     <li className={"registration_list_element"}>
                         <label htmlFor={"registration_username"}>Benutzername</label>
-                        <input id={"registration_username"} type={"text"} placeholder={"mindestens 8 Zeichen"}
+                        <input required={true} id={"registration_username"} type={"text"} placeholder={"mindestens 8 Zeichen"}
                                name={"userName"} onChange={handleInputChange} value={newRegistration.userName}/>
                     </li>
                     <li className={"registration_list_element"}>
                         <label htmlFor={"registration_password"}>Password</label>
-                        <input id={"registration_password"} type={"password"} placeholder={"mindestens 8 Zeichen"}
+                        <input required={true} id={"registration_password"} type={"password"} placeholder={"mindestens 8 Zeichen"}
                                name={"password"} onChange={handleInputChange} value={newRegistration.password}/>
                     </li>
                     <li className={"registration_list_element"}>
                         <label htmlFor={"registration_confirmation"}>Password nochmals eingeben</label>
-                        <input id={"registration_confirmation"} type={"password"} name={"confirmation"}
+                        <input required={true} id={"registration_confirmation"} type={"password"} name={"confirmation"}
                                onChange={handleInputChange} value={passwordConfirmation}/>
                     </li>
                     <button id={"submit_registration"} type={"submit"}>Erstellen</button>

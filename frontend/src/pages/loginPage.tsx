@@ -35,12 +35,12 @@ export default function LoginPage(props: LoginPageProps) {
                     <h2>Login</h2>
                     <li className={"login_list_element"}>
                         <label htmlFor={"username"}>Username</label>
-                        <input id={"username"} type={"text"} onChange={e => setUsername(e.target.value)}
+                        <input id={"username"} type={"text"} required={true} onChange={e => setUsername(e.target.value)}
                                value={username}/>
                     </li>
                     <li className={"login_list_element"}>
                         <label htmlFor={"password"}>Password</label>
-                        <input id={"password"} type={"password"} onChange={e => setPassword(e.target.value)}
+                        <input id={"password"} type={"password"} required={true} onChange={e => setPassword(e.target.value)}
                                value={password}/>
                     </li>
                     <button id={"submit_login"} type={"submit"}>Login</button>
