@@ -179,5 +179,18 @@ footer {
 .selectPage {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
+.selectPage button {
+    border: none;
+    background-color: white;
+}
+
+.selectPage button:hover {
+    cursor: pointer;
+}
+
+.selectPage img {
+    width: 30px;
+}

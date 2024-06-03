@@ -8,6 +8,8 @@ import catLogo from "../assets/cat.blue.svg";
 import dogLogo from "../assets/dog.blue.svg";
 import filterLogo from "../assets/filter.jpg";
 import {PetCard} from "../components/PetCard.tsx";
+import arrowleft from "../assets/arrowleft.png"
+import arrowright from "../assets/arrowright.png"
 
 export default function FindPetPage() {
     const [petList, setPetList] = useState<Pet[]>([])
@@ -18,10 +20,11 @@ export default function FindPetPage() {
     const [lastSearchValue, setLastSearchValue] = useState<SearchObject>({searchType: "", location: "", radius: 0})
 
     const [page, setPage] = useState<number>(1)
-    const per_page:number = 8
+    const perPage:number = 8
+    const totalPages = Math.ceil(petList.length/perPage)
 
-    const start:number = (page - 1) * per_page
-    const end:number = start + per_page
+    const start:number = (page - 1) * perPage
+    const end:number = start + perPage
 
     const pagedData = petList.slice(start,end)
 
@@ -50,7 +53,7 @@ export default function FindPetPage() {
     }
 
     function nextPage() {
-        if (page * per_page < petList.length) {
+        if (page * perPage < petList.length) {
             setPage(page + 1)
         }
     }
@@ -145,8 +148,9 @@ export default function FindPetPage() {
                 </div>}
         </div>
         <div className={"selectPage"}>
-            <button onClick={previousPage}>Previous</button>
-            <button onClick={nextPage}>Next</button>
+            {page !== 1 && <button onClick={previousPage}><img src={arrowleft} alt={"arrow_left"}/></button>}
+            {page}/{totalPages}
+            {(page * perPage < petList.length) && <button onClick={nextPage}><img src={arrowright} alt={"arrow_right"}/></button>}
         </div>
     </>
 
