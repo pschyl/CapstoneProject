@@ -176,5 +176,8 @@ footer {
     color: white;
 }
 
-
+.selectPage {
+    display: flex;
+    justify-content: center;
+}
 

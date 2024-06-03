@@ -17,6 +17,14 @@ export default function FindPetPage() {
     const [searchStatus, setSearchStatus] = useState<boolean>(false)
     const [lastSearchValue, setLastSearchValue] = useState<SearchObject>({searchType: "", location: "", radius: 0})
 
+    const [page, setPage] = useState<number>(1)
+    const per_page:number = 8
+
+    const start:number = (page - 1) * per_page
+    const end:number = start + per_page
+
+    const pagedData = petList.slice(start,end)
+
     function fetchPets() {
         axios.get("/api/pets")
             .then((response) => {
@@ -32,6 +40,18 @@ export default function FindPetPage() {
         } else {
             setIsChecked({...isChecked, [checkboxNumber] : true})
             filterRole.species.splice(filterRole.species.indexOf(checkboxSpecies), 1)
+        }
+    }
+
+    function previousPage() {
+        if (page !== 1) {
+            setPage(page - 1)
+        }
+    }
+
+    function nextPage() {
+        if (page * per_page < petList.length) {
+            setPage(page + 1)
         }
     }
 
@@ -115,7 +135,7 @@ export default function FindPetPage() {
         </div>
 
         <div className={"petCard_container"}>
-            {petList.length ? petList.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
+            {petList.length ? pagedData.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
                     .map((pet: Pet) => (
                         <PetCard id={pet.id} name={pet.name} type={pet.type} gender={pet.gender} age={pet.age} castrated={pet.castrated} description={pet.description} species={pet.species} shelter={pet.shelter}
                                  images={pet.images} key={pet.id}/>
@@ -123,6 +143,10 @@ export default function FindPetPage() {
                 : <div id={"no_result"}>
                     <div>keine Einträge gefunden</div>
                 </div>}
+        </div>
+        <div className={"selectPage"}>
+            <button onClick={previousPage}>Previous</button>
+            <button onClick={nextPage}>Next</button>
         </div>
     </>
 
