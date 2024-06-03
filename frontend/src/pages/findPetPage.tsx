@@ -71,7 +71,10 @@ export default function FindPetPage() {
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         axios.get(("/api/pets/" + searchInput.searchType + "/" + searchInput.location + "/" + searchInput.radius))
-            .then((response) => {setPetList(response.data)})
+            .then((response) => {
+                setPetList(response.data)
+                setTotalPages(Math.ceil(response.data.length/perPage))
+            })
             .catch((error) => console.log(error.message))
         setSearchStatus(true)
         setLastSearchValue(searchInput)
