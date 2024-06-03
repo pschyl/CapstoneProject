@@ -99,7 +99,6 @@ function App() {
                         </button>
                         {(loggedInUser.userName !== "" || loggedInShelter.userName !== "") &&
                             <div className={"dropdown-content"}>
-                                <a>Profil</a>
                                 <Link className={"link_styles"} to={"/messages"}>Nachrichten</Link>
                                 <a onClick={logout}>Logout</a>
                             </div>
