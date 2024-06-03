@@ -22,7 +22,7 @@ export default function FindPetPage() {
     const [activePage, setActivePage] = useState<number>(1)
     const [totalPages, setTotalPages] = useState<number>(1)
 
-    const perPage:number = 4
+    const perPage:number = 12
     const start:number = (activePage - 1) * perPage
     const end:number = start + perPage
     const pagedData = petList.slice(start,end)

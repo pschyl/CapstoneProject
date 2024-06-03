@@ -4,7 +4,24 @@
     width: 300px;
     height: 400px;
     gap: 30px;
+    border: 1px solid white;
+    border-radius: 21px;
 }
+
+.gallery_overlay {
+    display: flex;
+    width: 280px;
+    justify-content: space-between;
+    position: absolute;
+    margin-top: 9%;
+    margin-left: 10px;
+    visibility: hidden;
+}
+
+.petCard:hover .gallery_overlay {
+    visibility: visible;
+}
+
 
 .image_container {
     width: 300px;
@@ -15,18 +32,24 @@
     justify-content: center;
 }
 
+
 .image_container img {
     flex-shrink: 0;
     min-width: 100%;
     min-height: 100%;
 }
 
-.image_container img:hover {
-    scale: 102%;
+
+.petCard:hover .image_container img {
     cursor: pointer;
 }
 
+.petCard:hover {
+    border: 1px solid #748E8F;
+}
+
 .cardInformation {
+    padding: 5px;
     margin-top: 0;
 }
 
@@ -36,4 +59,25 @@
 
 #shelter_name {
     font-weight: lighter;
+}
+
+
+.gallery_overlay div {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid lightgrey;
+    background-color: whitesmoke;
+}
+
+.gallery_overlay img {
+    width: 20px;
+}
+
+.gallery_overlay div:hover {
+    cursor: pointer;
+    background-color: white;
+    scale: 1.05;
 }
