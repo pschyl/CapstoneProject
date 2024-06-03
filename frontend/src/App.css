@@ -177,6 +177,7 @@ footer {
 }
 
 .selectPage {
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,5 +193,9 @@ footer {
 }
 
 .selectPage img {
-    width: 30px;
+    width: 20px;
+}
+
+.pageIcon {
+    scale: 0.5;
 }

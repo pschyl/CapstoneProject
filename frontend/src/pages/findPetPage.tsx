@@ -10,6 +10,7 @@ import filterLogo from "../assets/filter.jpg";
 import {PetCard} from "../components/PetCard.tsx";
 import arrowleft from "../assets/arrowleft.png"
 import arrowright from "../assets/arrowright.png"
+import {Pagination} from "../components/Pagination.tsx";
 
 export default function FindPetPage() {
     const [petList, setPetList] = useState<Pet[]>([])
@@ -18,20 +19,21 @@ export default function FindPetPage() {
     const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "Familienmitglied", location: "", radius: 20})
     const [searchStatus, setSearchStatus] = useState<boolean>(false)
     const [lastSearchValue, setLastSearchValue] = useState<SearchObject>({searchType: "", location: "", radius: 0})
+    const [activePage, setActivePage] = useState<number>(1)
+    const [totalPages, setTotalPages] = useState<number>(1)
 
-    const [page, setPage] = useState<number>(1)
-    const perPage:number = 8
-    const totalPages = Math.ceil(petList.length/perPage)
-
-    const start:number = (page - 1) * perPage
+    const perPage:number = 4
+    const start:number = (activePage - 1) * perPage
     const end:number = start + perPage
-
     const pagedData = petList.slice(start,end)
+
+
 
     function fetchPets() {
         axios.get("/api/pets")
             .then((response) => {
                 setPetList(response.data)
+                setTotalPages(Math.ceil(response.data.length/perPage))
             })
             .catch((error) => console.log(error.message))
     }
@@ -47,14 +49,14 @@ export default function FindPetPage() {
     }
 
     function previousPage() {
-        if (page !== 1) {
-            setPage(page - 1)
+        if (activePage !== 1) {
+            setActivePage(activePage - 1)
         }
     }
 
     function nextPage() {
-        if (page * perPage < petList.length) {
-            setPage(page + 1)
+        if (activePage * perPage < petList.length) {
+            setActivePage(activePage + 1)
         }
     }
 
@@ -84,6 +86,7 @@ export default function FindPetPage() {
     useEffect(() => {
         fetchPets()
     }, [])
+
 
     return <>
         <div className={"input_container"}>
@@ -148,9 +151,11 @@ export default function FindPetPage() {
                 </div>}
         </div>
         <div className={"selectPage"}>
-            {page !== 1 && <button onClick={previousPage}><img src={arrowleft} alt={"arrow_left"}/></button>}
-            {page}/{totalPages}
-            {(page * perPage < petList.length) && <button onClick={nextPage}><img src={arrowright} alt={"arrow_right"}/></button>}
+            <div>{activePage !== 1 && <button onClick={previousPage}><img src={arrowleft} alt={"arrow_left"}/></button>}</div>
+            <div>{Array.from(Array(totalPages).keys()).map((entry) =>
+                <Pagination activePage={activePage} thisPage={entry + 1} key={entry} />
+            )}</div>
+            <div>{(activePage * perPage < petList.length) && <button onClick={nextPage}><img src={arrowright} alt={"arrow_right"}/></button>}</div>
         </div>
     </>
 
