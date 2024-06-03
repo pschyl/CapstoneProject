@@ -13,6 +13,7 @@ import loginLogo from "./assets/userLogo.png";
 import axios from "axios";
 import {User} from "./model/User.ts";
 import {Shelter} from "./model/Shelter.ts";
+import YourMessagesPage from "./pages/yourMessagesPage.tsx";
 
 export default App
 
@@ -99,7 +100,7 @@ function App() {
                         {(loggedInUser.userName !== "" || loggedInShelter.userName !== "") &&
                             <div className={"dropdown-content"}>
                                 <a>Profil</a>
-                                <a>Nachrichten</a>
+                                <Link to={"/messages"}>Nachrichten</Link>
                                 <a onClick={logout}>Logout</a>
                             </div>
                         }
@@ -112,10 +113,11 @@ function App() {
         <main>
             <Routes>
                 <Route path={"/"} element={<FindPetPage/>}/>
-                <Route path={"/find/:id"} element={<FindPetDetailPage/>}/>
+                <Route path={"/find/:id"} element={<FindPetDetailPage user={loggedInUser} shelter={loggedInShelter}/>}/>
                 <Route path={"/registration"} element={<RegistrationPage/>}/>
                 <Route path={"/login"} element={<LoginPage setUser={setLoggedInUser} setShelter={setLoggedInShelter}/>}/>
                 <Route path={"/place"} element={<PlacePetPage shelter={loggedInShelter}/>}/>
+                <Route path={"/messages"} element={<YourMessagesPage user={loggedInUser} shelter={loggedInShelter}/>}/>
             </Routes>
         </main>
         <footer>
