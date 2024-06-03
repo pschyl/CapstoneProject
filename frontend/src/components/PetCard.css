@@ -4,7 +4,7 @@
     width: 300px;
     height: 400px;
     gap: 30px;
-    border: 1px solid white;
+    border: 1px solid whitesmoke;
     border-radius: 21px;
 }
 
@@ -26,7 +26,8 @@
 .image_container {
     width: 300px;
     height: 300px;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     display: flex;
     overflow: hidden;
     justify-content: center;
