@@ -8,6 +8,9 @@ import catLogo from "../assets/cat.blue.svg";
 import dogLogo from "../assets/dog.blue.svg";
 import filterLogo from "../assets/filter.jpg";
 import {PetCard} from "../components/PetCard.tsx";
+import arrowleft from "../assets/arrowleft.png"
+import arrowright from "../assets/arrowright.png"
+import {Pagination} from "../components/Pagination.tsx";
 
 export default function FindPetPage() {
     const [petList, setPetList] = useState<Pet[]>([])
@@ -16,11 +19,21 @@ export default function FindPetPage() {
     const [searchInput, setSearchInput] = useState<SearchObject>({searchType: "Familienmitglied", location: "", radius: 20})
     const [searchStatus, setSearchStatus] = useState<boolean>(false)
     const [lastSearchValue, setLastSearchValue] = useState<SearchObject>({searchType: "", location: "", radius: 0})
+    const [activePage, setActivePage] = useState<number>(1)
+    const [totalPages, setTotalPages] = useState<number>(1)
+
+    const perPage:number = 12
+    const start:number = (activePage - 1) * perPage
+    const end:number = start + perPage
+    const pagedData = petList.slice(start,end)
+
+
 
     function fetchPets() {
         axios.get("/api/pets")
             .then((response) => {
                 setPetList(response.data)
+                setTotalPages(Math.ceil(response.data.length/perPage))
             })
             .catch((error) => console.log(error.message))
     }
@@ -35,6 +48,18 @@ export default function FindPetPage() {
         }
     }
 
+    function previousPage() {
+        if (activePage !== 1) {
+            setActivePage(activePage - 1)
+        }
+    }
+
+    function nextPage() {
+        if (activePage * perPage < petList.length) {
+            setActivePage(activePage + 1)
+        }
+    }
+
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         setSearchInput({...searchInput, location: event.target.value})
     }
@@ -46,7 +71,10 @@ export default function FindPetPage() {
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         axios.get(("/api/pets/" + searchInput.searchType + "/" + searchInput.location + "/" + searchInput.radius))
-            .then((response) => {setPetList(response.data)})
+            .then((response) => {
+                setPetList(response.data)
+                setTotalPages(Math.ceil(response.data.length/perPage))
+            })
             .catch((error) => console.log(error.message))
         setSearchStatus(true)
         setLastSearchValue(searchInput)
@@ -61,6 +89,7 @@ export default function FindPetPage() {
     useEffect(() => {
         fetchPets()
     }, [])
+
 
     return <>
         <div className={"input_container"}>
@@ -115,7 +144,7 @@ export default function FindPetPage() {
         </div>
 
         <div className={"petCard_container"}>
-            {petList.length ? petList.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
+            {petList.length ? pagedData.filter((pet: Pet) => (filterRole.species.includes(pet.species)))
                     .map((pet: Pet) => (
                         <PetCard id={pet.id} name={pet.name} type={pet.type} gender={pet.gender} age={pet.age} castrated={pet.castrated} description={pet.description} species={pet.species} shelter={pet.shelter}
                                  images={pet.images} key={pet.id}/>
@@ -123,6 +152,13 @@ export default function FindPetPage() {
                 : <div id={"no_result"}>
                     <div>keine Einträge gefunden</div>
                 </div>}
+        </div>
+        <div className={"selectPage"}>
+            <div>{activePage !== 1 && <button onClick={previousPage}><img src={arrowleft} alt={"arrow_left"}/></button>}</div>
+            <div>{Array.from(Array(totalPages).keys()).map((entry) =>
+                <Pagination activePage={activePage} thisPage={entry + 1} key={entry} />
+            )}</div>
+            <div>{(activePage * perPage < petList.length) && <button onClick={nextPage}><img src={arrowright} alt={"arrow_right"}/></button>}</div>
         </div>
     </>
 

@@ -176,5 +176,26 @@ footer {
     color: white;
 }
 
+.selectPage {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.selectPage button {
+    border: none;
+    background-color: white;
+}
 
+.selectPage button:hover {
+    cursor: pointer;
+}
+
+.selectPage img {
+    width: 20px;
+}
+
+.pageIcon {
+    scale: 0.5;
+}
