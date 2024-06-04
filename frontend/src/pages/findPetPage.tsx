@@ -45,7 +45,7 @@ export default function FindPetPage() {
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        axios.get(("/api/pets/" + searchInput.location + "/" + searchInput.radius))
+        axios.get(("/api/pets/" + searchInput.searchType + "/" + searchInput.location + "/" + searchInput.radius))
             .then((response) => {setPetList(response.data)})
             .catch((error) => console.log(error.message))
         setSearchStatus(true)

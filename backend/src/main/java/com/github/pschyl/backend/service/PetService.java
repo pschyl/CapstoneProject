@@ -38,9 +38,10 @@ public class PetService {
         return pet;
     }
 
-    public List<Pet> getAllWithinRadius(String location, int radius) {
+    public List<Pet> getAllWithinRadius(String type, String location, int radius) {
         Coordinates coordinatesOfLocation = coordinateService.transformLocationToCoordinates(location);
         return repo.findAll().stream()
+                .filter(pet -> pet.getType().contains(type))
                 .filter(pet -> pet.getShelter().getCoordinates().isWithinRadius(coordinatesOfLocation, radius))
                 .toList();
     }

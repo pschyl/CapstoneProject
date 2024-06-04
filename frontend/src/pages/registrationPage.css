@@ -83,3 +83,7 @@ label {
     border-bottom: #748E8F 3px solid;
 }
 
+#to_login {
+    margin-top: 10px;
+    font-size: x-small;
+}

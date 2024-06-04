@@ -1,19 +1,48 @@
 .new_message_card {
     border: 1px solid #748E8F;
-    border-radius: 5px;
+    box-shadow: 1px 1px #748E8F;
+    border-radius: 8px;
     display: flex;
     flex-flow: column nowrap;
-    padding: 25px;
-    background-color: white;
+    padding: 25px 25px 5px 25px;
+    background-color: whitesmoke;
 }
 
 .new_message_form {
     display: flex;
     flex-flow: column nowrap;
+    gap: 3px;
+}
+
+#button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new_message_form input {
+    border: 1px solid #748E8F;
+    background-color: white;
+}
+
+.new_message_form textarea {
+    border: 1px solid #748E8F;
+    background-color: white;
+}
+
+.new_message_form button {
+    background-color: orange;
+    border: 1px solid #748E8F;
+    width: 30%;
+}
+
+.new_message_form button:hover {
+    background-color: lightgreen;
+    cursor: pointer;
 }
 
 .close_popup {
-    background-color: white;
+    background-color: beige;
     border: none;
     position: absolute;
     margin-left: 455px;
@@ -21,6 +50,6 @@
 }
 
 .close_popup:hover {
-    scale: 1.1;
+    scale: 1.05;
     cursor: pointer;
 }

@@ -97,7 +97,7 @@ export default function PlacePetPage(props:placePetProps) {
                         <tbody>
                         <tr>
                             <th className={"first_col"}>Name</th>
-                            <th><input onChange={handleInputChange} type={"text"} name={"name"} value={newPet.name}/>
+                            <th><input required={true} onChange={handleInputChange} type={"text"} name={"name"} value={newPet.name}/>
                             </th>
                         </tr>
                         </tbody>
@@ -107,12 +107,12 @@ export default function PlacePetPage(props:placePetProps) {
                         <tr>
                             <th className={"first_col"}>Art</th>
                             <th>
-                                <input name={"species"} id={"species_cat"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"species"} id={"species_cat"} type={"radio"} onChange={handleInputChange}
                                        value={"Katze"}/>
                                 <label htmlFor={"species_cat"}>Katze</label>
                             </th>
                             <th>
-                                <input name={"species"} id={"species_dog"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"species"} id={"species_dog"} type={"radio"} onChange={handleInputChange}
                                        value={"Hund"}/>
                                 <label htmlFor={"species_dog"}>Hund</label>
                             </th>
@@ -121,12 +121,12 @@ export default function PlacePetPage(props:placePetProps) {
                         <tr>
                             <th className={"first_col"}>Geschlecht</th>
                             <th>
-                                <input name={"gender"} id={"gender_female"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"gender"} id={"gender_female"} type={"radio"} onChange={handleInputChange}
                                        value={"Weiblich"}/>
                                 <label htmlFor={"gender_female"}>Weiblich</label>
                             </th>
                             <th>
-                                <input name={"gender"} id={"gender_male"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"gender"} id={"gender_male"} type={"radio"} onChange={handleInputChange}
                                        value={"Männlich"}/>
                                 <label htmlFor={"gender_male"}>Männlich</label>
                             </th>
@@ -134,12 +134,12 @@ export default function PlacePetPage(props:placePetProps) {
                         <tr>
                             <th className={"first_col"}>Kastriert</th>
                             <th>
-                                <input name={"castrated"} id={"castrated_yes"} type={"radio"}
+                                <input required={true} name={"castrated"} id={"castrated_yes"} type={"radio"}
                                        onChange={handleInputChange} value={"Ja"}/>
                                 <label htmlFor={"castrated_yes"}>Ja</label>
                             </th>
                             <th>
-                                <input name={"castrated"} id={"castrated_no"} type={"radio"}
+                                <input required={true} name={"castrated"} id={"castrated_no"} type={"radio"}
                                        onChange={handleInputChange} value={"Nein"}/>
                                 <label htmlFor={"castrated_no"}>Nein</label>
                             </th>
@@ -151,17 +151,17 @@ export default function PlacePetPage(props:placePetProps) {
                         <tr>
                             <th className={"first_col"}>Alter</th>
                             <th>
-                                <input name={"age"} id={"age_young"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"age"} id={"age_young"} type={"radio"} onChange={handleInputChange}
                                        value={"Jung"}/>
                                 <label htmlFor={"age_young"}>Jung</label>
                             </th>
                             <th>
-                                <input name={"age"} id={"age_adult"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"age"} id={"age_adult"} type={"radio"} onChange={handleInputChange}
                                        value={"Erwachsen"}/>
                                 <label htmlFor={"age_adult"}>Erwachsen</label>
                             </th>
                             <th>
-                                <input name={"age"} id={"age_old"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"age"} id={"age_old"} type={"radio"} onChange={handleInputChange}
                                        value={"Alt"}/>
                                 <label htmlFor={"age_old"}>Alt</label>
                             </th>
@@ -169,17 +169,17 @@ export default function PlacePetPage(props:placePetProps) {
                         <tr>
                             <th className={"first_col"}>Sucht nach</th>
                             <th>
-                                <input name={"type"} id={"placetype_family"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"type"} id={"placetype_family"} type={"radio"} onChange={handleInputChange}
                                        value={"Familienmitglied"}/>
                                 <label htmlFor={"placetype_family"}>Familienmitglied</label>
                             </th>
                             <th>
-                                <input name={"type"} id={"placetype_temp"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"type"} id={"placetype_temp"} type={"radio"} onChange={handleInputChange}
                                        value={"Befristete Pflege"}/>
                                 <label htmlFor={"placetype_temp"}>Befristeter Pflege</label>
                             </th>
                             <th>
-                                <input name={"type"} id={"placetype_walk"} type={"radio"} onChange={handleInputChange}
+                                <input required={true} name={"type"} id={"placetype_walk"} type={"radio"} onChange={handleInputChange}
                                        value={"Spazierbegleitung"}/>
                                 <label htmlFor={"placetype_walk"}>Spazierbegleitung</label>
                             </th>
@@ -193,7 +193,7 @@ export default function PlacePetPage(props:placePetProps) {
                         <tr>
                             <th className={"first_col"}><label htmlFor={"input_description"}>Beschreibung</label></th>
                             <th>
-                            <textarea id={"input_description"} placeholder={"Max 200 Zeichen"} name={"description"}
+                            <textarea required={true} id={"input_description"} placeholder={"Max 200 Zeichen"} name={"description"}
                                       rows={4} cols={55} maxLength={200} onChange={handleInputChange}
                                       value={newPet.description}></textarea>
                             </th>

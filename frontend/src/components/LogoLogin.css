@@ -69,24 +69,31 @@
 }
 
 .dropdown-content {
-    margin-top: 30px;
+    background-color: black;
+    margin-top: 36px;
     display: none;
     position: absolute;
     padding: 10px 10px;
+    border: whitesmoke 1px solid;
     font-family: Arial;
 }
 
 .dropdown-content a {
     padding: 10px 12px;
     display: block;
-    color: black;
-    border-left: black 2px solid;
+    color: #748E8F;
+    border-left: 1px solid #393434;
+}
+
+.link_styles {
+    text-decoration: none;
 }
 
 .dropdown-content a:hover {
     color: orange;
     cursor: pointer;
 }
+
 
 .dropdown:hover .dropdown-content{
     display: block;
