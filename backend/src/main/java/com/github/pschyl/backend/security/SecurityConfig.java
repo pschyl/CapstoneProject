@@ -2,6 +2,7 @@ package com.github.pschyl.backend.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,7 +26,13 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
-                    request.requestMatchers("/api/user/me").authenticated();
+                    request.requestMatchers("/api/messages").authenticated();
+                    request.requestMatchers("/api/user/login").permitAll();
+                    request.requestMatchers("/api/user").authenticated();
+                    request.requestMatchers(HttpMethod.POST, "/api/pets").authenticated();
+                    request.requestMatchers(HttpMethod.PUT, "/api/pets").authenticated();
+                    request.requestMatchers(HttpMethod.DELETE, "/api/pets").authenticated();
+                    request.requestMatchers(HttpMethod.GET, "/api/pets").permitAll();
                     request.anyRequest().permitAll();
                 })
                 .sessionManagement(client -> client.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
