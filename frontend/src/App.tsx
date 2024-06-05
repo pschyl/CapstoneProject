@@ -14,6 +14,7 @@ import axios from "axios";
 import {User} from "./model/User.ts";
 import {Shelter} from "./model/Shelter.ts";
 import YourMessagesPage from "./pages/yourMessagesPage.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 export default App
 
@@ -114,11 +115,13 @@ function App() {
         <main>
             <Routes>
             <Route path={"/"} element={<FindPetPage/>}/>
-                <Route path={"/find/:id"} element={<FindPetDetailPage user={loggedInUser} shelter={loggedInShelter}/>}/>
+                <Route element={<ProtectedRoute user={loggedInUser} shelter={loggedInShelter}/>}>
+                    <Route path={"/find/:id"} element={<FindPetDetailPage user={loggedInUser} shelter={loggedInShelter}/>}/>
+                    <Route path={"/messages"} element={<YourMessagesPage user={loggedInUser} shelter={loggedInShelter}/>}/>
+                    <Route path={"/place"} element={<PlacePetPage shelter={loggedInShelter}/>}/>
+                </Route>
                 <Route path={"/registration"} element={<RegistrationPage/>}/>
                 <Route path={"/login"} element={<LoginPage setUser={setLoggedInUser} setShelter={setLoggedInShelter}/>}/>
-                <Route path={"/place"} element={<PlacePetPage shelter={loggedInShelter}/>}/>
-                <Route path={"/messages"} element={<YourMessagesPage user={loggedInUser} shelter={loggedInShelter}/>}/>
             </Routes>
         </main>
         <footer>
